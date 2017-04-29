@@ -23,7 +23,8 @@
     "dist"
   ],
   "scripts": {
-    "prebuild": "rimraf ./dist",
+    "lint": "eslint ./src",
+    "prebuild": "npm run lint && rimraf ./dist",
     "build": "babel ./src --out-dir ./dist --source-maps --copy-files",
     "prepublish": "npm run build"
   },
