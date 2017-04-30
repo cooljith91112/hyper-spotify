@@ -1,5 +1,5 @@
 import { isEqual } from 'lodash'
-import spotify from 'spotify-node-applescript'
+import SpotifyManager from '../lib/SpotifyManager'
 import TrackInfoFactory from '../components/TrackInfo'
 
 const HyperSpotifyWidgetFactory = (React) => {
@@ -42,34 +42,31 @@ const HyperSpotifyWidgetFactory = (React) => {
         return
       }
 
-      spotify.isRunning((err, isRunning) => {
-        if (!err) {
+      SpotifyManager.isRunning()
+        .then(isRunning => {
           this.setState({ isRunning })
 
           if (isRunning) {
             // Get Play/Pause state
-            spotify.getState((err, spotifyState) => {
-              if (!err) {
-                this.setState({ isPlaying: spotifyState.state })
+            SpotifyManager.getState()
+              .then((spotifyState) => {
+                this.setState({ isPlaying: (spotifyState.state === 'playing') })
 
                 // Get Track details
-                spotify.getTrack((err, track) => {
-                  if (!err) {
-                    console.log('currentTrack', track)
-                    this.setState({ track })
-                  } else {
-                    this.setState({ ...initialState })
-                  }
-                })
-              } else {
+                return SpotifyManager.getTrack()
+              })
+              .then((track) => {
+                console.log('currentTrack', track)
+                this.setState({ track })
+              })
+              .catch(() => {
                 this.setState({ ...initialState })
-              }
-            })
+              })
           }
-        } else {
+        })
+        .catch(() => {
           this.setState({ ...initialState })
-        }
-      })
+        })
     }
 
     componentDidMount () {
