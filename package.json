@@ -12,12 +12,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Panz3r/hyper-spotify"
+    "url": "git+https://github.com/panz3r/hyper-spotify"
   },
   "bugs": {
-    "url": "https://github.com/Panz3r/hyper-spotify/issues"
+    "url": "https://github.com/panz3r/hyper-spotify/issues"
   },
-  "homepage": "https://github.com/Panz3r/hyper-spotify#readme",
+  "homepage": "https://github.com/panz3r/hyper-spotify#readme",
   "main": "dist/index.js",
   "files": [
     "dist"
