@@ -103,6 +103,7 @@ const HyperSpotifyWidgetFactory = (React) => {
       return (
         <div style={styles.widgetStyle}>
           <Icon
+            iconName={isRunning ? (isPlaying ? 'pause' : 'play') : 'spotify'}
             style={styles.iconStyle}
           />
           <TrackInfo
