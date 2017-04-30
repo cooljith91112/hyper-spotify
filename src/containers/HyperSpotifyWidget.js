@@ -31,7 +31,16 @@ const HyperSpotifyWidgetFactory = (React) => {
     }
 
     performSoundCheck () {
-      console.log('SoundCheck...', new Date())
+      console.log('SoundCheck...', new Date(), 'at', this)
+
+      if (!this._reactInternalInstance) {
+        // Kill this interval since its container does not exists anymore
+        if (this.soundCheck) {
+          clearInterval(this.soundCheck)
+        }
+
+        return
+      }
 
       spotify.isRunning((err, isRunning) => {
         if (!err) {
@@ -39,19 +48,19 @@ const HyperSpotifyWidgetFactory = (React) => {
 
           if (isRunning) {
             // Get Play/Pause state
-            spotify.getState((err, { state }) => {
+            spotify.getState((err, spotifyState) => {
               if (!err) {
-                this.setState({ isPlaying: state })
-              } else {
-                this.setState({ ...initialState })
-              }
-            })
+                this.setState({ isPlaying: spotifyState.state })
 
-            // Get Track details
-            spotify.getTrack((err, track) => {
-              if (!err) {
-                console.log('currentTrack', track)
-                this.setState({ track })
+                // Get Track details
+                spotify.getTrack((err, track) => {
+                  if (!err) {
+                    console.log('currentTrack', track)
+                    this.setState({ track })
+                  } else {
+                    this.setState({ ...initialState })
+                  }
+                })
               } else {
                 this.setState({ ...initialState })
               }
@@ -66,7 +75,9 @@ const HyperSpotifyWidgetFactory = (React) => {
     componentDidMount () {
       console.log('HyperSpotifyWidget didMount')
 
-      this.soundCheck = setInterval(() => this.performSoundCheck(), 5000)
+      if (!this.soundCheck) {
+        this.soundCheck = setInterval(() => this.performSoundCheck(), 5000)
+      }
 
       this.performSoundCheck()
     }
@@ -74,7 +85,9 @@ const HyperSpotifyWidgetFactory = (React) => {
     componentDidUnmount () {
       console.log('HyperSpotifyWidget didUnmount')
 
-      clearInterval(this.soundCheck)
+      if (this.soundCheck) {
+        clearInterval(this.soundCheck)
+      }
     }
 
     shouldComponentUpdate (nextProps, nextState) {
