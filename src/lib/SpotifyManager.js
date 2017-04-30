@@ -25,6 +25,24 @@ class SpotifyManager {
     })
   }
 
+  static togglePlayPause () {
+    return new Promise(function (resolve, reject) {
+      spotify.playPause((err) => {
+        if (err) {
+          reject(err)
+        } else {
+          spotify.getState((err, state) => {
+            if (err) {
+              reject(err)
+            } else {
+              resolve({ ...state })
+            }
+          })
+        }
+      })
+    })
+  }
+
   static getTrack () {
     return new Promise(function (resolve, reject) {
       spotify.getTrack((err, track) => {

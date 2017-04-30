@@ -71,6 +71,20 @@ const HyperSpotifyWidgetFactory = (React) => {
         })
     }
 
+    togglePlayState () {
+      const { isRunning } = this.state
+
+      if (isRunning) {
+        SpotifyManager.togglePlayPause()
+          .then((spotifyState) => {
+            this.setState({ isPlaying: (spotifyState.state === 'playing') })
+          })
+          .catch(() => {
+            this.setState({ ...initialState })
+          })
+      }
+    }
+
     componentDidMount () {
       console.log('HyperSpotifyWidget didMount')
 
@@ -104,6 +118,7 @@ const HyperSpotifyWidgetFactory = (React) => {
         <div style={styles.widgetStyle}>
           <Icon
             iconName={isRunning ? (isPlaying ? 'pause' : 'play') : 'spotify'}
+            onClick={() => this.togglePlayState()}
             style={styles.iconStyle}
           />
           <TrackInfo
