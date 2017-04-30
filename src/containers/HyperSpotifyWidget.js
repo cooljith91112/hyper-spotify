@@ -1,10 +1,12 @@
 import { isEqual } from 'lodash'
 import SpotifyManager from '../lib/SpotifyManager'
+import IconFactory from '../components/Icon'
 import TrackInfoFactory from '../components/TrackInfo'
 
 const HyperSpotifyWidgetFactory = (React) => {
   const { Component } = React
 
+  const Icon = IconFactory(React) // eslint-disable-line no-unused-vars
   const TrackInfo = TrackInfoFactory(React) // eslint-disable-line no-unused-vars
 
   const initialState = {
@@ -100,6 +102,9 @@ const HyperSpotifyWidgetFactory = (React) => {
 
       return (
         <div style={styles.widgetStyle}>
+          <Icon
+            style={styles.iconStyle}
+          />
           <TrackInfo
             track={track}
           />
@@ -112,7 +117,15 @@ const HyperSpotifyWidgetFactory = (React) => {
 const styles = {
   'widgetStyle': {
     height: 30,
-    fontSize: 12
+    fontSize: 12,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  'iconStyle': {
+    height: 24,
+    width: 24
   }
 }
 
