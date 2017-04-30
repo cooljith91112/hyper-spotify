@@ -1,9 +1,10 @@
 import { capitalize } from 'lodash'
 
-const IconFactory = (React) => ({ iconName, style }) => {
+const IconFactory = (React) => ({ iconName, onClick, style }) => {
   const iconStyle = iconName ? styles[capitalize(iconName) + 'IconStyle'] : styles.SpotifyIconStyle
   return (
     <div
+      onClick={onClick}
       style={{
         ...styles.IconStyle,
         ...style,
