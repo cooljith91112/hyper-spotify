@@ -1,19 +1,15 @@
 import HyperSpotifyWidgetFactory from '../containers/HyperSpotifyWidget'
 
 export const HyperSpotifyFooterFactory = (React) => {
-  const { Component } = React
-
   const HyperSpotifyWidget = HyperSpotifyWidgetFactory(React) // eslint-disable-line no-unused-vars
 
-  return class extends Component {
-    render () {
-      return (
-        <footer style={styles.footerStyle}>
-          <span style={styles.footerOverlayStyle}/>
-          <HyperSpotifyWidget/>
-        </footer>
-      )
-    }
+  return () => {
+    return (
+      <footer style={styles.footerStyle}>
+        <span style={styles.footerOverlayStyle}/>
+        <HyperSpotifyWidget/>
+      </footer>
+    )
   }
 }
 

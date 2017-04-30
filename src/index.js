@@ -1,4 +1,4 @@
-import { HyperSpotifyFooterFactory } from './containers/HyperSpotifyFooter'
+import { HyperSpotifyFooterFactory } from './components/HyperSpotifyFooter'
 
 export function reduceUI (state, { type, config }) {
   switch (type) {
