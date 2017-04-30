@@ -124,9 +124,10 @@ const styles = {
     alignItems: 'center'
   },
   'iconStyle': {
-    height: 24,
-    width: 24,
-    marginRight: 12
+    height: 16,
+    width: 16,
+    marginRight: 6,
+    backgroundColor: '#FFF'
   }
 }
 
