@@ -33,7 +33,7 @@ const HyperSpotifyWidgetFactory = (React) => {
     }
 
     performSoundCheck () {
-      console.log('SoundCheck...', new Date(), 'at', this)
+      // console.log('SoundCheck...', new Date(), 'at', this)
 
       if (!this._reactInternalInstance) {
         // Kill this interval since its container does not exists anymore
@@ -58,7 +58,7 @@ const HyperSpotifyWidgetFactory = (React) => {
                 return SpotifyManager.getTrack()
               })
               .then((track) => {
-                console.log('currentTrack', track)
+                // console.log('currentTrack', track)
                 this.setState({ track })
               })
               .catch(() => {
@@ -86,7 +86,7 @@ const HyperSpotifyWidgetFactory = (React) => {
     }
 
     componentDidMount () {
-      console.log('HyperSpotifyWidget didMount')
+      // console.log('HyperSpotifyWidget didMount')
 
       if (!this.soundCheck) {
         this.soundCheck = setInterval(() => this.performSoundCheck(), 5000)
@@ -96,7 +96,7 @@ const HyperSpotifyWidgetFactory = (React) => {
     }
 
     componentWillUnmount () {
-      console.log('HyperSpotifyWidget willUnmount')
+      // console.log('HyperSpotifyWidget willUnmount')
 
       if (this.soundCheck) {
         clearInterval(this.soundCheck)
