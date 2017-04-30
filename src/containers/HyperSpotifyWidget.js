@@ -82,8 +82,8 @@ const HyperSpotifyWidgetFactory = (React) => {
       this.performSoundCheck()
     }
 
-    componentDidUnmount () {
-      console.log('HyperSpotifyWidget didUnmount')
+    componentWillUnmount () {
+      console.log('HyperSpotifyWidget willUnmount')
 
       if (this.soundCheck) {
         clearInterval(this.soundCheck)
