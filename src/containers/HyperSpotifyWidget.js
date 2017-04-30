@@ -125,7 +125,8 @@ const styles = {
   },
   'iconStyle': {
     height: 24,
-    width: 24
+    width: 24,
+    marginRight: 12
   }
 }
 
