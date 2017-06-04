@@ -22,7 +22,7 @@ const styles = {
     webkitMaskPosition: 'center',
     opacity: '0.5',
     ':hover': {
-      opacity: '0.85'
+      opacity: '1'
     }
   },
   SpotifyIconStyle: {
