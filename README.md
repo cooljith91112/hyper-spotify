@@ -6,7 +6,8 @@
 [![npm](https://img.shields.io/npm/dm/hyper-spotify.svg)](https://www.npmjs.com/package/hyper-spotify)
 [![GitHub issues](https://img.shields.io/github/issues/panz3r/hyper-spotify.svg)](https://github.com/panz3r/hyper-spotify/issues)
 
-> Spotify plugin for [Hyper](https://hyper.is). Display currently playing song on [Spotify](https://www.spotify.com) at the bottom of the terminal and allow to play/pause your favourite music
+> Spotify plugin for [Hyper](https://hyper.is). <br>
+Display currently playing song on [Spotify](https://www.spotify.com) at the bottom of the terminal and allows you to control your favourite music
 
 ## Installation
 Simply add this plugin inside `~/.hyper.js` and enjoy your music :musical_note:
