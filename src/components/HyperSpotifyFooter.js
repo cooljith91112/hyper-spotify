@@ -6,8 +6,8 @@ export const HyperSpotifyFooterFactory = (React) => {
   return () => {
     return (
       <footer style={styles.footerStyle}>
-        <span style={styles.footerOverlayStyle}/>
-        <HyperSpotifyWidget/>
+        <span style={styles.footerOverlayStyle} />
+        <HyperSpotifyWidget />
       </footer>
     )
   }
