@@ -21,6 +21,19 @@ module.exports = {
 ## Limitations
 Currently works only on macOS
 
+## Troubleshooting
+
+### Can't load `hyper-spotify`
+Unfortunately this seems to be a common issue with `Hyper` plugins (see here [zeit/hyper#191](https://github.com/zeit/hyper/issues/191))
+
+After installing `hyper-spotify` if `Hyper` complains about an error while enabling the plugin:
+- do a full restart of `Hyper` app
+
+if even after restaring the issue persists try running the following command
+```bash
+$ cd ~/.hyper_plugins && npm install
+```
+
 ## Credits
 
 This plugin is inspired by [`atom-spotify2`](https://github.com/albertorestifo/atom-spotify2) and uses [`spotify-node-applescript`](https://github.com/andrehaveman/spotify-node-applescript) to interact with [Spotify](https://www.spotify.com) client on macOS
