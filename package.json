@@ -1,6 +1,6 @@
 {
   "name": "hyper-spotify",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Add a Spotify controller to Hyper.",
   "keywords": [
     "hyperterm",
@@ -27,11 +27,12 @@
     "prebuild": "npm run lint && rimraf ./dist",
     "build": "babel ./src --out-dir ./dist --source-maps --copy-files",
     "build:watch": "babel --watch ./src --out-dir ./dist --source-maps --copy-files",
-    "prepublish": "npm run build"
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "babel-runtime": "^6.23.0",
     "lodash": "^4.17.4",
+    "radium": "^0.19.1",
     "rimraf": "^2.6.1",
     "spotify-node-applescript": "^1.0.0"
   },
