@@ -43,6 +43,42 @@ class SpotifyManager {
     })
   }
 
+  static previousTrack () {
+    return new Promise(function (resolve, reject) {
+      spotify.previous((err) => {
+        if (err) {
+          reject(err)
+        } else {
+          spotify.getTrack((err, track) => {
+            if (err) {
+              reject(err)
+            } else {
+              resolve({ ...track })
+            }
+          })
+        }
+      })
+    })
+  }
+
+  static nextTrack () {
+    return new Promise(function (resolve, reject) {
+      spotify.next((err) => {
+        if (err) {
+          reject(err)
+        } else {
+          spotify.getTrack((err, track) => {
+            if (err) {
+              reject(err)
+            } else {
+              resolve({ ...track })
+            }
+          })
+        }
+      })
+    })
+  }
+
   static getTrack () {
     return new Promise(function (resolve, reject) {
       spotify.getTrack((err, track) => {
