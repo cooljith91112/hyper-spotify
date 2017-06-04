@@ -9,6 +9,11 @@ const HyperSpotifyWidgetFactory = (React) => {
   const Icon = IconFactory(React) // eslint-disable-line no-unused-vars
   const TrackInfo = TrackInfoFactory(React) // eslint-disable-line no-unused-vars
 
+  const skipActions = {
+    previous: 'PREV',
+    next: 'NEXT'
+  }
+
   const initialState = {
     isRunning: false,
     isPlaying: false,
@@ -85,6 +90,33 @@ const HyperSpotifyWidgetFactory = (React) => {
       }
     }
 
+    _getSkipPromise (skipAction) {
+      const { previous, next } = skipActions
+
+      switch (skipAction) {
+        case previous:
+          return SpotifyManager.previousTrack()
+
+        case next:
+          return SpotifyManager.nextTrack()
+      }
+    }
+
+    skipTo (skipAction) {
+      const { isRunning } = this.state
+
+      if (isRunning) {
+        this._getSkipPromise(skipAction)
+            .then((track) => {
+              // console.log('newTrack', track)
+              this.setState({ track })
+            })
+            .catch(() => {
+              this.setState({ ...initialState })
+            })
+      }
+    }
+
     componentDidMount () {
       // console.log('HyperSpotifyWidget didMount')
 
@@ -107,20 +139,58 @@ const HyperSpotifyWidgetFactory = (React) => {
       return !isEqual(nextState, this.state)
     }
 
-    render () {
+    renderControls () {
+      const {
+        previous,
+        next
+      } = skipActions
+
       const {
         isRunning,
-        isPlaying,
+        isPlaying
+      } = this.state
+
+      if (isRunning) {
+        return (
+          <div style={styles.constrolsContainerStyle}>
+            <Icon
+              iconName='previous'
+              onClick={() => this.skipTo(previous)}
+              style={styles.iconStyle}
+            />
+
+            <Icon
+              iconName={isPlaying ? 'pause' : 'play'}
+              onClick={() => this.togglePlayState()}
+              style={styles.iconStyle}
+            />
+
+            <Icon
+              iconName='next'
+              onClick={() => this.skipTo(next)}
+              style={styles.iconStyle}
+            />
+          </div>
+        )
+      }
+
+      return (
+        <Icon
+          iconName='spotify'
+          onClick={() => console.log('Start spotify')}
+          style={styles.iconStyle}
+        />
+      )
+    }
+
+    render () {
+      const {
         track
       } = this.state
 
       return (
         <div style={styles.widgetStyle}>
-          <Icon
-            iconName={isRunning ? (isPlaying ? 'pause' : 'play') : 'spotify'}
-            onClick={() => this.togglePlayState()}
-            style={styles.iconStyle}
-          />
+          {this.renderControls()}
           <TrackInfo
             track={track}
           />
@@ -134,6 +204,12 @@ const styles = {
   'widgetStyle': {
     height: 30,
     fontSize: 12,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  'constrolsContainerStyle': {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'center',
