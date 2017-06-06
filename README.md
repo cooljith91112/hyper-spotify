@@ -9,6 +9,8 @@
 > Spotify plugin for [Hyper](https://hyper.is). <br>
 Display currently playing song on [Spotify](https://www.spotify.com) at the bottom of the terminal and allows you to control your favourite music
 
+![hyper-spotify](art/preview.png)
+
 ## Installation
 Simply add this plugin inside `~/.hyper.js` and enjoy your music :musical_note:
 ```js
