@@ -21,6 +21,28 @@ module.exports = {
 }
 ```
 
+## Configuration
+In your `~/.hyper.js` you can define the following parameters for `hyper-spotify`
+
+### Position
+`hyper-spotify` supports 2 different positioning: 
+- `top`
+- `bottom` (default)
+
+To specify where `hyper-spotify` bar should appear just add the following to your `~/.hyper.js` config section
+```js
+modules.exports = {
+  config: {
+    ...
+    hyperSpotify: {
+      position: 'top' // or 'bottom'
+    },
+    ...
+  },
+  ... 
+};
+```
+
 ## Limitations
 Currently works only on macOS
 
