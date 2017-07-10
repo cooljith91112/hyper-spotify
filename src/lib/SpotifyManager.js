@@ -19,7 +19,7 @@ class SpotifyManager {
         if (err) {
           reject(err)
         } else {
-          resolve({ ...state })
+          resolve(state)
         }
       })
     })
@@ -35,7 +35,7 @@ class SpotifyManager {
             if (err) {
               reject(err)
             } else {
-              resolve({ ...state })
+              resolve(state)
             }
           })
         }
@@ -53,7 +53,7 @@ class SpotifyManager {
             if (err) {
               reject(err)
             } else {
-              resolve({ ...track })
+              resolve(track)
             }
           })
         }
@@ -71,7 +71,7 @@ class SpotifyManager {
             if (err) {
               reject(err)
             } else {
-              resolve({ ...track })
+              resolve(track)
             }
           })
         }
@@ -85,7 +85,7 @@ class SpotifyManager {
         if (err) {
           reject(err)
         } else {
-          resolve({ ...track })
+          resolve(track)
         }
       })
     })
