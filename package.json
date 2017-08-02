@@ -25,7 +25,7 @@
   "scripts": {
     "lint": "standard './src/**.js' | snazzy",
     "prebuild": "npm run lint && rimraf ./dist",
-    "build": "babel ./src --out-dir ./dist --source-maps --copy-files",
+    "build": "babel ./src --out-dir ./dist --copy-files",
     "build:watch": "babel --watch ./src --out-dir ./dist --source-maps --copy-files",
     "prepublishOnly": "npm run build"
   },
