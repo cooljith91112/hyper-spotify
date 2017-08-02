@@ -1,9 +1,25 @@
+import os from 'os'
 import spotify from 'spotify-node-applescript'
+import { SpotifyLinux, SpotifyDefault } from './spotify'
 
 class SpotifyManager {
-  static isRunning () {
-    return new Promise(function (resolve, reject) {
-      spotify.isRunning((err, isRunning) => {
+  constructor () {
+    switch (os.platform()) {
+      case 'darwin':
+        this.spotifyService = spotify
+        break
+      case 'linux':
+        this.spotifyService = new SpotifyLinux()
+        break
+
+      default:
+        this.spotifyService = new SpotifyDefault()
+    }
+  }
+
+  isRunning () {
+    return new Promise((resolve, reject) => {
+      this.spotifyService.isRunning((err, isRunning) => {
         if (err) {
           reject(err)
         } else {
@@ -13,9 +29,9 @@ class SpotifyManager {
     })
   }
 
-  static getState () {
-    return new Promise(function (resolve, reject) {
-      spotify.getState((err, state) => {
+  getState () {
+    return new Promise((resolve, reject) => {
+      this.spotifyService.getState((err, state) => {
         if (err) {
           reject(err)
         } else {
@@ -25,9 +41,9 @@ class SpotifyManager {
     })
   }
 
-  static togglePlayPause () {
-    return new Promise(function (resolve, reject) {
-      spotify.playPause((err) => {
+  togglePlayPause () {
+    return new Promise((resolve, reject) => {
+      this.spotifyService.playPause((err) => {
         if (err) {
           reject(err)
         } else {
@@ -43,13 +59,13 @@ class SpotifyManager {
     })
   }
 
-  static previousTrack () {
-    return new Promise(function (resolve, reject) {
-      spotify.previous((err) => {
+  previousTrack () {
+    return new Promise((resolve, reject) => {
+      this.spotifyService.previous((err) => {
         if (err) {
           reject(err)
         } else {
-          spotify.getTrack((err, track) => {
+          this.spotifyService.getTrack((err, track) => {
             if (err) {
               reject(err)
             } else {
@@ -61,13 +77,13 @@ class SpotifyManager {
     })
   }
 
-  static nextTrack () {
-    return new Promise(function (resolve, reject) {
-      spotify.next((err) => {
+  nextTrack () {
+    return new Promise((resolve, reject) => {
+      this.spotifyService.next((err) => {
         if (err) {
           reject(err)
         } else {
-          spotify.getTrack((err, track) => {
+          this.spotifyService.getTrack((err, track) => {
             if (err) {
               reject(err)
             } else {
@@ -79,9 +95,9 @@ class SpotifyManager {
     })
   }
 
-  static getTrack () {
-    return new Promise(function (resolve, reject) {
-      spotify.getTrack((err, track) => {
+  getTrack () {
+    return new Promise((resolve, reject) => {
+      this.spotifyService.getTrack((err, track) => {
         if (err) {
           reject(err)
         } else {

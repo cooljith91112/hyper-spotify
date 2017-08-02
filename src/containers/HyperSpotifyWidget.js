@@ -35,10 +35,13 @@ const HyperSpotifyWidgetFactory = (React) => {
           artist: ''
         }
       }
+
+      this.spotifyManager = new SpotifyManager()
     }
 
     performSoundCheck () {
       // console.log('SoundCheck...', new Date(), 'at', this)
+      const { spotifyManager } = this
 
       if (!this._reactInternalInstance) {
         // Kill this interval since its container does not exists anymore
@@ -49,18 +52,18 @@ const HyperSpotifyWidgetFactory = (React) => {
         return
       }
 
-      SpotifyManager.isRunning()
+      spotifyManager.isRunning()
         .then(isRunning => {
           this.setState({ isRunning })
 
           if (isRunning) {
             // Get Play/Pause state
-            SpotifyManager.getState()
+            spotifyManager.getState()
               .then((spotifyState) => {
                 this.setState({ isPlaying: (spotifyState.state === 'playing') })
 
                 // Get Track details
-                return SpotifyManager.getTrack()
+                return spotifyManager.getTrack()
               })
               .then((track) => {
                 // console.log('currentTrack', track)
@@ -77,10 +80,10 @@ const HyperSpotifyWidgetFactory = (React) => {
     }
 
     togglePlayState () {
-      const { isRunning } = this.state
+      const { spotifyManager, state: { isRunning } } = this
 
       if (isRunning) {
-        SpotifyManager.togglePlayPause()
+        spotifyManager.togglePlayPause()
           .then((spotifyState) => {
             this.setState({ isPlaying: (spotifyState.state === 'playing') })
           })
@@ -91,14 +94,15 @@ const HyperSpotifyWidgetFactory = (React) => {
     }
 
     _getSkipPromise (skipAction) {
+      const { spotifyManager } = this
       const { previous, next } = skipActions
 
       switch (skipAction) {
         case previous:
-          return SpotifyManager.previousTrack()
+          return spotifyManager.previousTrack()
 
         case next:
-          return SpotifyManager.nextTrack()
+          return spotifyManager.nextTrack()
       }
     }
 
@@ -146,29 +150,34 @@ const HyperSpotifyWidgetFactory = (React) => {
       } = skipActions
 
       const {
+        controlsContainerStyle,
+        iconStyle
+      } = styles
+
+      const {
         isRunning,
         isPlaying
       } = this.state
 
       if (isRunning) {
         return (
-          <div style={styles.constrolsContainerStyle}>
+          <div style={controlsContainerStyle}>
             <Icon
               iconName='previous'
               onClick={() => this.skipTo(previous)}
-              style={styles.iconStyle}
+              style={iconStyle}
             />
 
             <Icon
               iconName={isPlaying ? 'pause' : 'play'}
               onClick={() => this.togglePlayState()}
-              style={styles.iconStyle}
+              style={iconStyle}
             />
 
             <Icon
               iconName='next'
               onClick={() => this.skipTo(next)}
-              style={styles.iconStyle}
+              style={iconStyle}
             />
           </div>
         )
@@ -177,8 +186,8 @@ const HyperSpotifyWidgetFactory = (React) => {
       return (
         <Icon
           iconName='spotify'
-          onClick={() => console.log('Start spotify')}
-          style={styles.iconStyle}
+          onClick={() => console.log('Start spotify 2.0')}
+          style={iconStyle}
         />
       )
     }
@@ -188,8 +197,12 @@ const HyperSpotifyWidgetFactory = (React) => {
         track
       } = this.state
 
+      const {
+        widgetStyle
+      } = styles
+
       return (
-        <div style={styles.widgetStyle}>
+        <div style={widgetStyle}>
           {this.renderControls()}
           <TrackInfo
             track={track}
@@ -209,7 +222,7 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center'
   },
-  'constrolsContainerStyle': {
+  'controlsContainerStyle': {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'center',
