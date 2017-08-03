@@ -59,9 +59,8 @@ const HyperSpotifyWidgetFactory = (React) => {
           if (isRunning) {
             // Get Play/Pause state
             spotifyManager.getState()
-              .then((spotifyState) => {
-                this.setState({ isPlaying: (spotifyState.state === 'playing') })
-
+              .then(({ state }) => {
+                this.setState({ isPlaying: (state === 'playing') })
                 // Get Track details
                 return spotifyManager.getTrack()
               })
