@@ -1,8 +1,10 @@
 class SpotifyDefault {
-  isRunning (isRunningCallback) {
-    if (isRunningCallback) {
-      isRunningCallback(undefined, false)
-    }
+  constructor () {
+    console.error('[hyper-spotify] Unsupported OS')
+  }
+
+  isRunning () {
+    Promise.resolve(false)
   }
 }
 
