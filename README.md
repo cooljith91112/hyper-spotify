@@ -44,7 +44,7 @@ modules.exports = {
 ```
 
 ## Limitations
-Currently works only on macOS
+Currently works only on `macOS` and `Linux` (Tested on Ubuntu 17.04)
 
 ## Troubleshooting
 
