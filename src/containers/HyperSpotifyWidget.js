@@ -71,6 +71,8 @@ const HyperSpotifyWidgetFactory = (React) => {
               .catch(() => {
                 this.setState({ ...initialState })
               })
+          } else {
+            this.setState({ ...initialState })
           }
         })
         .catch(() => {
