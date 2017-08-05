@@ -61,4 +61,8 @@ $ cd ~/.hyper_plugins && npm install
 
 ## Credits
 
-This plugin is inspired by [`atom-spotify2`](https://github.com/albertorestifo/atom-spotify2) and uses [`spotify-node-applescript`](https://github.com/andrehaveman/spotify-node-applescript) to interact with [Spotify](https://www.spotify.com) client on macOS
+This plugin is inspired by [`atom-spotify2`](https://github.com/albertorestifo/atom-spotify2) and relies on 
+- [`spotify-node-applescript`](https://github.com/andrehaveman/spotify-node-applescript) on macOS
+- [`node-dbus`](https://github.com/sidorares/node-dbus) on Linux
+
+to interact with [Spotify](https://www.spotify.com) client
