@@ -4,6 +4,8 @@
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 [![hyper](https://img.shields.io/badge/Hyper-v1.3.3-brightgreen.svg)](https://github.com/zeit/hyper/releases/tag/1.3.3)
 [![npm](https://img.shields.io/npm/dm/hyper-spotify.svg)](https://www.npmjs.com/package/hyper-spotify)
+
+[![Build Status](https://travis-ci.org/panz3r/hyper-spotify.svg)](https://travis-ci.org/panz3r/hyper-spotify)
 [![GitHub issues](https://img.shields.io/github/issues/panz3r/hyper-spotify.svg)](https://github.com/panz3r/hyper-spotify/issues)
 
 > Spotify plugin for [Hyper](https://hyper.is). <br>
