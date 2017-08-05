@@ -105,7 +105,6 @@ class SpotifyLinux {
     return new Promise(function (resolve, reject) {
       try {
         spotifyInterface.Next(function () {
-          console.log('next args', arguments)
           setTimeout(() => resolve(spotifyInterface), 500)
         })
       } catch (err) {
