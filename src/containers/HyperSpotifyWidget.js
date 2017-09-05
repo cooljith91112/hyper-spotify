@@ -152,7 +152,10 @@ const HyperSpotifyWidgetFactory = (React) => {
 
       const {
         controlsContainerStyle,
-        iconStyle
+        leftControlsContainerStyle,
+        rightControlsContainerStyle,
+        iconStyle,
+        playIconStyle
       } = styles
 
       const {
@@ -160,9 +163,30 @@ const HyperSpotifyWidgetFactory = (React) => {
         isPlaying
       } = this.state
 
+      const {
+        pluginConfig: {
+          controlsPosition
+        }
+      } = this.props
+
       if (isRunning) {
+        let controlsStyle = controlsContainerStyle
+
+        switch (controlsPosition) {
+          case 'left':
+            controlsStyle = { ...controlsContainerStyle, ...leftControlsContainerStyle }
+            break
+
+          case 'right':
+            controlsStyle = { ...controlsContainerStyle, ...rightControlsContainerStyle }
+            break
+
+          default:
+            controlsStyle = { ...controlsContainerStyle }
+        }
+
         return (
-          <div style={controlsContainerStyle}>
+          <div style={controlsStyle}>
             <Icon
               iconName='previous'
               onClick={() => this.skipTo(previous)}
@@ -172,7 +196,7 @@ const HyperSpotifyWidgetFactory = (React) => {
             <Icon
               iconName={isPlaying ? 'pause' : 'play'}
               onClick={() => this.togglePlayState()}
-              style={iconStyle}
+              style={{ ...iconStyle, ...playIconStyle }}
             />
 
             <Icon
@@ -187,7 +211,7 @@ const HyperSpotifyWidgetFactory = (React) => {
       return (
         <Icon
           iconName='spotify'
-          onClick={() => console.log('Start spotify 2.0')}
+          onClick={() => console.log('Start spotify 2.1')}
           style={iconStyle}
         />
       )
@@ -205,6 +229,7 @@ const HyperSpotifyWidgetFactory = (React) => {
       return (
         <div style={widgetStyle}>
           {this.renderControls()}
+
           <TrackInfo
             track={track}
           />
@@ -226,14 +251,28 @@ const styles = {
   'controlsContainerStyle': {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center'
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    marginRight: 6
+  },
+  'leftControlsContainerStyle': {
+    position: 'absolute',
+    left: 14,
+    marginRight: 0
+  },
+  'rightControlsContainerStyle': {
+    position: 'absolute',
+    right: 14,
+    marginRight: 0
   },
   'iconStyle': {
     height: 16,
     width: 16,
-    marginRight: 6,
     backgroundColor: '#FFF'
+  },
+  'playIconStyle': {
+    marginLeft: 6,
+    marginRight: 6
   }
 }
 

@@ -13,7 +13,14 @@ export function reduceUI (state, {type, config}) {
 }
 
 export function mapTermsState ({ ui: { hyperSpotify } }, map) {
-  return { ...map, hyperSpotify: { position: 'bottom', ...hyperSpotify } }
+  return {
+    ...map,
+    hyperSpotify: {
+      position: 'bottom',
+      controlsPosition: 'default',
+      ...hyperSpotify
+    }
+  }
 }
 
 export function decorateTerms (Terms, { React }) {
@@ -24,17 +31,18 @@ export function decorateTerms (Terms, { React }) {
 
   return class extends Component {
     render () {
-      const { customChildrenBefore, customChildren, hyperSpotify: { position } } = this.props
+      const { customChildrenBefore, customChildren, hyperSpotify } = this.props
 
       let existingChildrenBefore = customChildrenBefore ? customChildrenBefore instanceof Array ? customChildrenBefore : [customChildrenBefore] : []
       let existingChildren = customChildren ? customChildren instanceof Array ? customChildren : [customChildren] : []
 
+      const { position } = hyperSpotify
       if (position === 'top') {
-        existingChildrenBefore = existingChildrenBefore.concat(<HyperSpotifyHeader />)
+        existingChildrenBefore = existingChildrenBefore.concat(<HyperSpotifyHeader pluginConfig={hyperSpotify} />)
       }
 
       if (position === 'bottom') {
-        existingChildren = existingChildren.concat(<HyperSpotifyFooter />)
+        existingChildren = existingChildren.concat(<HyperSpotifyFooter pluginConfig={hyperSpotify} />)
       }
 
       return (
