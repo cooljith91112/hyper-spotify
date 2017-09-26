@@ -1,6 +1,12 @@
 import { HyperSpotifyHeaderFactory } from './components/HyperSpotifyHeader'
 import { HyperSpotifyFooterFactory } from './components/HyperSpotifyFooter'
 
+export function decorateConfig (config) {
+  return {
+    ...config
+  }
+}
+
 export function reduceUI (state, {type, config}) {
   switch (type) {
     case 'CONFIG_LOAD':
@@ -12,18 +18,31 @@ export function reduceUI (state, {type, config}) {
   return state
 }
 
-export function mapTermsState ({ ui: { hyperSpotify } }, map) {
+export function mapHyperState ({ ui: { hyperSpotify } }, map) {
+  // console.log({map})
+
+  const position = hyperSpotify.position || 'bottom'
+  const hyperStatuslineCompatibleMode = hyperSpotify.hyperStatuslineCompatibleMode || false
+
   return {
     ...map,
     hyperSpotify: {
-      position: 'bottom',
+      position,
       controlsPosition: 'default',
+      hyperStatuslineCompatibleMode,
       ...hyperSpotify
-    }
+    },
+    customCSS: `
+      ${map.customCSS}
+
+      .terms_terms {
+        margin-bottom: ${(position === 'bottom' && hyperStatuslineCompatibleMode) ? '60' : '30'}px;
+      }
+    `
   }
 }
 
-export function decorateTerms (Terms, { React }) {
+export function decorateHyper (Hyper, { React }) {
   const { Component } = React
 
   const HyperSpotifyHeader = HyperSpotifyHeaderFactory(React) // eslint-disable-line no-unused-vars
@@ -46,7 +65,7 @@ export function decorateTerms (Terms, { React }) {
       }
 
       return (
-        <Terms
+        <Hyper
           {...this.props}
           customChildrenBefore={existingChildrenBefore}
           customChildren={existingChildren}
