@@ -55,7 +55,7 @@ export function decorateHyper (Hyper, { React }) {
       let existingChildrenBefore = customChildrenBefore ? customChildrenBefore instanceof Array ? customChildrenBefore : [customChildrenBefore] : []
       let existingChildren = customChildren ? customChildren instanceof Array ? customChildren : [customChildren] : []
 
-      const position = hyperSpotify || 'bottom'
+      const position = hyperSpotify.position || 'bottom'
       if (position === 'top') {
         existingChildrenBefore = existingChildrenBefore.concat(<HyperSpotifyHeader pluginConfig={hyperSpotify} />)
       }
