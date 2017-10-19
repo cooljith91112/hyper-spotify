@@ -31,6 +31,7 @@ modules.exports = {
     ...
     hyperSpotify: {
       position: 'top', // or 'bottom'
+      margin: 'default', // or 'double' or custom value
       controlsPosition: 'default', // or 'left' or 'right'
     },
     ...
@@ -43,6 +44,12 @@ modules.exports = {
 `hyper-spotify bar` supports 2 different positioning: 
 - `top`
 - `bottom` (default)
+
+### Margin
+`hyper-spotify bar` supports 3 margin options:
+- `default`, should work most of the times
+- `double`, when using other bar plugins (such as `hyper-statusline` or `hyperline`)
+- custom value, specify a custom margin value as an interger (e.g. 30)
 
 ### Controls position
 `hyper-spotify controls` support 3 different positioning: 
