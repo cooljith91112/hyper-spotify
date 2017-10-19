@@ -1,12 +1,15 @@
 {
   "name": "hyper-spotify",
-  "version": "2.2.2",
+  "version": "3.0.0",
   "description": "Add a Spotify controller to Hyper.",
   "keywords": [
     "hyperterm",
     "hyper",
     "spotify",
     "hyper-spotify"
+  ],
+  "os": [
+    "!win32"
   ],
   "author": "Mattia Panzeri <mattia.panzeri93@gmail.com>",
   "license": "MIT",
@@ -18,7 +21,7 @@
     "url": "https://github.com/panz3r/hyper-spotify/issues"
   },
   "homepage": "https://github.com/panz3r/hyper-spotify#readme",
-  "main": "dist/index.js",
+  "main": "index.js",
   "files": [
     "dist"
   ],
@@ -31,7 +34,7 @@
   },
   "dependencies": {
     "babel-runtime": "^6.23.0",
-    "dbus-native": "^0.2.2",
+    "dbus-native": "^0.2.3",
     "lodash": "^4.17.4",
     "radium": "^0.19.1",
     "react": "^15.5.4",

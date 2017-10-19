@@ -267,7 +267,7 @@ const styles = {
   },
   'iconStyle': {
     height: 16,
-    width: 16,
+    width: 17,
     backgroundColor: '#FFF'
   },
   'playIconStyle': {

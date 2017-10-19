@@ -19,6 +19,7 @@ const styles = {
     alignItems: 'center',
     position: 'relative',
     opacity: '0.5',
+    marginTop: 34,
     ':hover': {
       opacity: '1'
     }
