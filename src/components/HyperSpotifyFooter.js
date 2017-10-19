@@ -4,10 +4,10 @@ import HyperSpotifyWidgetFactory from '../containers/HyperSpotifyWidget'
 export const HyperSpotifyFooterFactory = (React) => {
   const HyperSpotifyWidget = HyperSpotifyWidgetFactory(React) // eslint-disable-line no-unused-vars
 
-  return Radium(() => (
-    <footer style={styles.footerStyle}>
+  return Radium(({ pluginConfig }) => (
+    <footer style={[styles.footerStyle, { marginBottom: (pluginConfig.hyperStatuslineCompatibleMode ? 30 : 0) }]}>
       <span style={styles.footerOverlayStyle} />
-      <HyperSpotifyWidget />
+      <HyperSpotifyWidget pluginConfig={pluginConfig} />
     </footer>
   ))
 }

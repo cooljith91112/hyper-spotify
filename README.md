@@ -24,26 +24,39 @@ module.exports = {
 ```
 
 ## Configuration
-In your `~/.hyper.js` you can define the following parameters for `hyper-spotify`
-
-### Position
-`hyper-spotify` supports 2 different positioning: 
-- `top`
-- `bottom` (default)
-
-To specify where `hyper-spotify` bar should appear just add the following to your `~/.hyper.js` config section
+In your `~/.hyper.js` you can define the following parameters to customize `hyper-spotify` appearance
 ```js
 modules.exports = {
   config: {
     ...
     hyperSpotify: {
-      position: 'top' // or 'bottom'
+      position: 'top', // or 'bottom'
+      margin: 'default', // or 'double' or custom value
+      controlsPosition: 'default', // or 'left' or 'right'
     },
     ...
   },
   ... 
 };
 ```
+
+### Position
+`hyper-spotify bar` supports 2 different positioning: 
+- `top`
+- `bottom` (default)
+
+### Margin
+`hyper-spotify bar` supports 3 margin options:
+- `default`, should work most of the times
+- `double`, when using other bar plugins (such as `hyper-statusline` or `hyperline`)
+- custom value, specify a custom margin value as an interger (e.g. 30)
+
+### Controls position
+`hyper-spotify controls` support 3 different positioning: 
+- `default`, controls appears just before the song details
+- `left`, controls are fixed to the left side of Hyper window
+- `right`, controls are fixed to the right side of Hyper window
+
 
 ## Limitations
 Currently works only on `macOS` and `Linux` (Tested on Ubuntu 17.04)

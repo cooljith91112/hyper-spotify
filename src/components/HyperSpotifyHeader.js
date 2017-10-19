@@ -4,10 +4,10 @@ import HyperSpotifyWidgetFactory from '../containers/HyperSpotifyWidget'
 export const HyperSpotifyHeaderFactory = (React) => {
   const HyperSpotifyWidget = HyperSpotifyWidgetFactory(React) // eslint-disable-line no-unused-vars
 
-  return Radium(() => (
+  return Radium(({ pluginConfig }) => (
     <header style={styles.headerStyle}>
       <span style={styles.headerOverlayStyle} />
-      <HyperSpotifyWidget />
+      <HyperSpotifyWidget pluginConfig={pluginConfig} />
     </header>
   ))
 }
@@ -19,6 +19,7 @@ const styles = {
     alignItems: 'center',
     position: 'relative',
     opacity: '0.5',
+    marginTop: 34,
     ':hover': {
       opacity: '1'
     }
