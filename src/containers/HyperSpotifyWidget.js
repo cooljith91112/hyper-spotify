@@ -43,7 +43,8 @@ const HyperSpotifyWidgetFactory = (React) => {
       // console.log('SoundCheck...', new Date(), 'at', this)
       const { spotifyManager } = this
 
-      if (!this._reactInternalInstance) {
+      // _reactInternalInstance (Hyper 1.x) || _reactInternalFiber (Hyper 2.x)
+      if (!this._reactInternalInstance && !this._reactInternalFiber) {
         // Kill this interval since its container does not exists anymore
         if (this.soundCheck) {
           clearInterval(this.soundCheck)
