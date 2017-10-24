@@ -1,4 +1,4 @@
-const { get } = require('lodash')
+const get = require('lodash.get')
 const { HyperSpotifyHeaderFactory } = require('./dist/components/HyperSpotifyHeader')
 const { HyperSpotifyFooterFactory } = require('./dist/components/HyperSpotifyFooter')
 
@@ -47,18 +47,9 @@ exports.reduceUI = (state, {type, config}) => {
   return state
 }
 
-exports.mapHyperState = ({ ui: { hyperSpotify } }, map) => {
-  const position = get(hyperSpotify, 'position', 'bottom')
-  const hyperStatuslineCompatibleMode = get(hyperSpotify, 'hyperStatuslineCompatibleMode', false)
-
-  return Object.assign({}, map, {
-    hyperSpotify: Object.assign({
-      position,
-      controlsPosition: 'default',
-      hyperStatuslineCompatibleMode
-    }, hyperSpotify)
-  })
-}
+exports.mapHyperState = ({ ui: { hyperSpotify } }, map) => Object.assign({}, map, {
+  hyperSpotify: Object.assign({}, hyperSpotify)
+})
 
 exports.decorateHyper = (Hyper, { React }) => {
   const HyperSpotifyHeader = HyperSpotifyHeaderFactory(React) // eslint-disable-line no-unused-vars

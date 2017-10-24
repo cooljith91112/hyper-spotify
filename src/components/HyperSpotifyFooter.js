@@ -5,7 +5,7 @@ export const HyperSpotifyFooterFactory = (React) => {
   const HyperSpotifyWidget = HyperSpotifyWidgetFactory(React) // eslint-disable-line no-unused-vars
 
   return Radium(({ pluginConfig }) => (
-    <footer style={[styles.footerStyle, { marginBottom: (pluginConfig.hyperStatuslineCompatibleMode ? 30 : 0) }]}>
+    <footer style={styles.footerStyle}>
       <span style={styles.footerOverlayStyle} />
       <HyperSpotifyWidget pluginConfig={pluginConfig} />
     </footer>

@@ -1,4 +1,4 @@
-import { isEqual } from 'lodash'
+import isEqual from 'lodash.isequal'
 import SpotifyManager from '../lib/SpotifyManager'
 import IconFactory from '../components/Icon'
 import TrackInfoFactory from '../components/TrackInfo'
@@ -212,7 +212,7 @@ const HyperSpotifyWidgetFactory = (React) => {
       return (
         <Icon
           iconName='spotify'
-          onClick={() => console.log('Start spotify 2.1')}
+          onClick={() => console.log('Start Spotify')}
           style={iconStyle}
         />
       )

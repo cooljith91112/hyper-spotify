@@ -1,5 +1,5 @@
 import Radium from 'radium'
-import { capitalize } from 'lodash'
+import capitalize from 'lodash.capitalize'
 
 const IconFactory = (React) => Radium(({ iconName, onClick, style }) => {
   const iconStyle = iconName ? styles[capitalize(iconName) + 'IconStyle'] : styles.SpotifyIconStyle
