@@ -32,6 +32,18 @@ exports.decorateConfig = (config) => {
       .terms_terms {
           margin-${position}: ${marginValue}px;
       }
+
+      .hyper-spotify {
+      }
+
+      .hyper-spotify.hoverable,
+      .hyper-spotify .hoverable {
+      }
+
+      .hyper-spotify.hoverable:hover,
+      .hyper-spotify .hoverable:hover {
+        opacity: 1 !important;
+      }
     `
   })
 }
