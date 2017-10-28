@@ -5,7 +5,7 @@ const IconFactory = (React) => ({ iconName, onClick, style }) => {
   return (
     <div
       onClick={onClick}
-      className='hoverable'
+      className='hyper-spotify-icon hoverable'
       style={{
         ...styles.IconStyle,
         ...style,
