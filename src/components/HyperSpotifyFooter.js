@@ -1,6 +1,8 @@
+import HyperSpotifyOverlayFactory from './HyperOverlay'
 import HyperSpotifyWidgetFactory from '../containers/HyperSpotifyWidget'
 
 export const HyperSpotifyFooterFactory = (React) => {
+  const HyperSpotifyOverlay = HyperSpotifyOverlayFactory(React) // eslint-disable-line no-unused-vars
   const HyperSpotifyWidget = HyperSpotifyWidgetFactory(React) // eslint-disable-line no-unused-vars
 
   return ({ pluginConfig }) => (
@@ -8,7 +10,7 @@ export const HyperSpotifyFooterFactory = (React) => {
       className='hyper-spotify hoverable'
       style={styles.footerStyle}
     >
-      <span style={styles.footerOverlayStyle} />
+      <HyperSpotifyOverlay />
       <HyperSpotifyWidget pluginConfig={pluginConfig} />
     </footer>
   )
@@ -24,14 +26,5 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
     opacity: '0.5'
-  },
-  'footerOverlayStyle': {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    bottom: 0,
-    right: 0,
-    backgroundColor: '#fff',
-    opacity: 0.07
   }
 }
