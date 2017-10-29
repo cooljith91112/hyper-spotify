@@ -23,6 +23,8 @@ module.exports = {
 }
 ```
 
+<br />
+
 ## Configuration
 In your `~/.hyper.js` you can define the following parameters to customize `hyper-spotify` appearance
 ```js
@@ -57,6 +59,43 @@ modules.exports = {
 - `left`, controls are fixed to the left side of Hyper window
 - `right`, controls are fixed to the right side of Hyper window
 
+### Theme - Available in 3.1.0-beta.2, see [here](https://github.com/panz3r/hyper-spotify/issues/16#issuecomment-340273708) for install guide
+`hyper-spotify` support different themes:
+- `default`, A light theme with a `Spotify Green` (`#1ED760`) Spotify icon
+- `light`, An white theme suitable for dark `hyper` themes
+- `dark`, A deep-black theme suitable for light `hyper` themes
+- special event themes (look for them if you really want to :stuck_out_tongue_winking_eye:)
+- `custom`, A customizable theme (see below for more options)
+
+#### Custom Theme
+If you'd like to give a personal touch to `hyper-spotify`, you can use a custom `theme` and specify one or more of the theme colors
+- `overlayColor`, the color to apply to `hyper-spotify` bar background, defaults to `white` (`#FFF`)
+- `iconColor`, the color for every actionable icon, defaults to `white` (`#FFF`)
+- `spotifyIconColor`, the color for the Spotify icon (visible when `Spotify` app is not running), defaults to `iconColor` (if specified) or to `Spotify Green` (`#1ED760`)
+- `textColor`, track info color, defaults to `white` (`#FFF`)
+
+<br />
+
+Custom theme sample configuration, edit your `~/.hyper.js`
+```js
+modules.exports = {
+  config: {
+    ...
+    hyperSpotify: {
+      ...
+      theme: 'custom', // important!
+      overlayColor: '#000',
+      iconColor: '#D75C1B',
+      spotifyIconColor: '#1ED760',
+      textColor: '#FFF'
+    },
+    ...
+  },
+  ... 
+};
+```
+
+<br />
 
 ## Limitations
 Currently works only on `macOS` and `Linux` (Tested on Ubuntu 17.04)
@@ -73,6 +112,8 @@ if even after restaring the issue persists try running the following command
 ```bash
 $ cd ~/.hyper_plugins && npm install
 ```
+
+<br />
 
 ## Credits
 

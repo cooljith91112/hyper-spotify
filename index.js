@@ -1,4 +1,5 @@
 const get = require('lodash.get')
+const { getThemeCssByName } = require('./dist/utils/ThemeManager')
 const { HyperSpotifyHeaderFactory } = require('./dist/components/HyperSpotifyHeader')
 const { HyperSpotifyFooterFactory } = require('./dist/components/HyperSpotifyFooter')
 
@@ -32,6 +33,11 @@ exports.decorateConfig = (config) => {
       .terms_terms {
           margin-${position}: ${marginValue}px;
       }
+
+      .hyper-spotify.hoverable:hover,
+      .hyper-spotify .hoverable:hover {
+        opacity: 1 !important;
+      }
     `
   })
 }
@@ -48,7 +54,8 @@ exports.reduceUI = (state, {type, config}) => {
 }
 
 exports.mapHyperState = ({ ui: { hyperSpotify } }, map) => Object.assign({}, map, {
-  hyperSpotify: Object.assign({}, hyperSpotify)
+  hyperSpotify: Object.assign({}, hyperSpotify),
+  customCSS: `${map.customCSS || ''} ${getThemeCssByName(hyperSpotify.theme || 'halloween', hyperSpotify)}`
 })
 
 exports.decorateHyper = (Hyper, { React }) => {
