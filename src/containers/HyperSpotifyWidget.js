@@ -268,8 +268,7 @@ const styles = {
   },
   'iconStyle': {
     height: 16,
-    width: 17,
-    backgroundColor: '#FFF'
+    width: 17
   },
   'playIconStyle': {
     marginLeft: 6,

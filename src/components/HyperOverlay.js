@@ -1,7 +1,5 @@
 
-const HyperSpotifyOverlayFactory = (React) => () => (
-  <span style={styles.overlayStyle} />
-)
+const HyperSpotifyOverlayFactory = React => () => <span className='hyper-spotify-overlay' style={styles.overlayStyle} />
 
 const styles = {
   overlayStyle: {
@@ -10,7 +8,6 @@ const styles = {
     left: 0,
     bottom: 0,
     right: 0,
-    backgroundColor: '#fff',
     opacity: 0.07
   }
 }

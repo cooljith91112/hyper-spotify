@@ -1,11 +1,12 @@
 import capitalize from 'lodash.capitalize'
 
 const IconFactory = (React) => ({ iconName, onClick, style }) => {
+  const className = `hyper-spotify-icon hyper-spotify-icon-${iconName} hoverable`
   const iconStyle = iconName ? styles[capitalize(iconName) + 'IconStyle'] : styles.SpotifyIconStyle
   return (
     <div
       onClick={onClick}
-      className='hyper-spotify-icon hoverable'
+      className={className}
       style={{
         ...styles.IconStyle,
         ...style,
