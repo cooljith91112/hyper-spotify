@@ -59,7 +59,7 @@ modules.exports = {
 - `left`, controls are fixed to the left side of Hyper window
 - `right`, controls are fixed to the right side of Hyper window
 
-### Theme - Available in 3.1.0-beta.2, see [here](https://github.com/panz3r/hyper-spotify/issues/16#issuecomment-340273708) for install guide
+### Theme
 `hyper-spotify` support different themes:
 - `default`, A light theme with a `Spotify Green` (`#1ED760`) Spotify icon
 - `light`, An white theme suitable for dark `hyper` themes
