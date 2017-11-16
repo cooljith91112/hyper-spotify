@@ -79,7 +79,7 @@ export const getThemeCssByVariables = (overlayColor, iconColor, spotifyIconColor
   `
 }
 
-export const getThemeCssByName = (themeName, { overlayColor, iconColor, spotifyIconColor, textColor }) => {
+export const getThemeCssByName = (themeName, { overlayColor, iconColor, spotifyIconColor, textColor } = {}) => {
   switch (themeName) {
     case 'light':
       return lightTheme

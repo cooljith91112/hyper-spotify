@@ -55,7 +55,7 @@ exports.reduceUI = (state, {type, config}) => {
 
 exports.mapHyperState = ({ ui: { hyperSpotify } }, map) => Object.assign({}, map, {
   hyperSpotify: Object.assign({}, hyperSpotify),
-  customCSS: `${map.customCSS || ''} ${getThemeCssByName(hyperSpotify.theme || 'default', hyperSpotify)}`
+  customCSS: `${map.customCSS || ''} ${getThemeCssByName(get(hyperSpotify, 'theme', 'default'), hyperSpotify)}`
 })
 
 exports.decorateHyper = (Hyper, { React }) => {
