@@ -10,6 +10,14 @@ class SpotifyLinux {
     this.spotifyService = this.sessionBus.getService('org.mpris.MediaPlayer2.spotify')
   }
 
+  supportedActions () {
+    return [
+      'togglePlayPause',
+      'previousTrack',
+      'nextTrack'
+    ];
+  }
+
   isRunning () {
     return this._getSpotifyInterface()
       .then(() => Promise.resolve(true))

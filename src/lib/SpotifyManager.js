@@ -16,6 +16,10 @@ class SpotifyManager {
     }
   }
 
+  supportedActions () {
+    return this.spotifyService.supportedActions()
+  }
+
   isRunning () {
     return this.spotifyService.isRunning()
   }
