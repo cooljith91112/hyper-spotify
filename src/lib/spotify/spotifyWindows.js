@@ -26,10 +26,10 @@ class SpotifyWindows {
 
   getTrack () {
     return this.spotilocal.getStatus()
-      .then(status => { return Promise.resolve({
+      .then(status => Promise.resolve({
         name: status.track.track_resource.name,
         artist: status.track.artist_resource.name
-      }); });
+      }));
   }
 
   togglePlayPause () {
