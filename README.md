@@ -123,3 +123,6 @@ This plugin is inspired by [`atom-spotify2`](https://github.com/albertorestifo/a
 - [`spotilocal`](https://github.com/ShyykoSerhiy/spotilocal) on Windows
 
 to interact with [Spotify](https://www.spotify.com) client
+
+Special thanks to
+- [@OrionNebula](https://github.com/OrionNebula) for `Windows` support initial implementation.
