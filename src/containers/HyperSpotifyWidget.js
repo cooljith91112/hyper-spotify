@@ -188,24 +188,26 @@ const HyperSpotifyWidgetFactory = (React) => {
             controlsStyle = { ...controlsContainerStyle }
         }
 
+        const supportedActions = spotifyManager.supportedActions()
+
         return (
           <div style={controlsStyle}>
             <Icon
               iconName='previous'
               onClick={() => this.skipTo(previous)}
-              style={{...iconStyle, display: !spotifyManager.supportedActions().includes('previousTrack') ? 'none' : 'inherit'}}
+              style={{ ...iconStyle, display: !supportedActions.includes('previousTrack') ? 'none' : 'inherit' }}
             />
 
             <Icon
               iconName={isPlaying ? 'pause' : 'play'}
               onClick={() => this.togglePlayState()}
-              style={{ ...iconStyle, ...playIconStyle, display: !spotifyManager.supportedActions().includes('togglePlayPause') ? 'none' : 'inherit' }}
+              style={{ ...iconStyle, ...playIconStyle, display: !supportedActions.includes('togglePlayPause') ? 'none' : 'inherit' }}
             />
 
             <Icon
               iconName='next'
               onClick={() => this.skipTo(next)}
-              style={{...iconStyle, display: !spotifyManager.supportedActions().includes('nextTrack') ? 'none' : 'inherit'}}
+              style={{ ...iconStyle, display: !supportedActions.includes('nextTrack') ? 'none' : 'inherit' }}
             />
           </div>
         )
