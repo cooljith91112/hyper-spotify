@@ -3,6 +3,10 @@ class SpotifyDefault {
     console.error('[hyper-spotify] Unsupported OS')
   }
 
+  supportedActions () {
+    return []
+  }
+
   isRunning () {
     Promise.resolve(false)
   }
