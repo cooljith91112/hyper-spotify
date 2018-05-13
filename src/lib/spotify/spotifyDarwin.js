@@ -1,6 +1,15 @@
 import spotify from 'spotify-node-applescript'
 
 class SpotifyDarwin {
+
+  supportedActions () {
+    return [
+      'togglePlayPause',
+      'previousTrack',
+      'nextTrack'
+    ];
+  }
+
   isRunning () {
     return new Promise((resolve, reject) => {
       spotify.isRunning((err, isRunning) => {

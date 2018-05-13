@@ -1,5 +1,5 @@
 import os from 'os'
-import { SpotifyDarwin, SpotifyLinux, SpotifyDefault } from './spotify'
+import { SpotifyDarwin, SpotifyLinux, SpotifyDefault, SpotifyWindows } from './spotify'
 
 class SpotifyManager {
   constructor () {
@@ -10,10 +10,17 @@ class SpotifyManager {
       case 'linux':
         this.spotifyService = new SpotifyLinux()
         break
+      case 'win32':
+        this.spotifyService = new SpotifyWindows()
+        break
 
       default:
         this.spotifyService = new SpotifyDefault()
     }
+  }
+
+  supportedActions () {
+    return this.spotifyService.supportedActions()
   }
 
   isRunning () {

@@ -98,7 +98,7 @@ modules.exports = {
 <br />
 
 ## Limitations
-Currently works only on `macOS` and `Linux` (Tested on Ubuntu 17.04)
+Currently works only on `macOS`, `Linux` (Tested on Ubuntu 17.04), and `Windows` (with limited support).
 
 ## Troubleshooting
 
@@ -120,5 +120,6 @@ $ cd ~/.hyper_plugins && npm install
 This plugin is inspired by [`atom-spotify2`](https://github.com/albertorestifo/atom-spotify2) and relies on 
 - [`spotify-node-applescript`](https://github.com/andrehaveman/spotify-node-applescript) on macOS
 - [`node-dbus`](https://github.com/sidorares/node-dbus) on Linux
+- [`spotilocal`](https://github.com/ShyykoSerhiy/spotilocal) on Windows
 
 to interact with [Spotify](https://www.spotify.com) client
