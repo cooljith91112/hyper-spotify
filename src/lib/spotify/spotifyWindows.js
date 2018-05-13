@@ -3,6 +3,7 @@ import { Spotilocal } from 'spotilocal'
 class SpotifyWindows {
   constructor () {
     this.spotilocal = new Spotilocal();
+    this.spotilocal.init()
   }
 
   supportedActions () {
@@ -12,7 +13,7 @@ class SpotifyWindows {
   }
 
   isRunning () {
-    return this.spotilocal.init()
+    return this.spotilocal.getStatus()
       .then(() => Promise.resolve(true))
       .catch(() => Promise.resolve(false));
   }
