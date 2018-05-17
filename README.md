@@ -115,6 +115,11 @@ $ cd ~/.hyper_plugins && npm install
 
 <br />
 
+## Related Projects
+
+If you found this plugin of your interest or if you need to control other media players be sure to check out
+[`hyper-media-control`](https://github.com/OrionNebula/hyper-media-control) by [@OrionNebula](https://github.com/OrionNebula)
+
 ## Credits
 
 This plugin is inspired by [`atom-spotify2`](https://github.com/albertorestifo/atom-spotify2) and relies on 
@@ -124,5 +129,6 @@ This plugin is inspired by [`atom-spotify2`](https://github.com/albertorestifo/a
 
 to interact with [Spotify](https://www.spotify.com) client
 
-Special thanks to
+## Special Thanks
+
 - [@OrionNebula](https://github.com/OrionNebula) for `Windows` support initial implementation.
