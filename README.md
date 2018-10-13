@@ -98,7 +98,7 @@ modules.exports = {
 <br />
 
 ## Limitations
-Currently works only on `macOS`, `Linux` (Tested on Ubuntu 17.04), and `Windows` (with limited support).
+Currently works only on `macOS`, `Linux` (Tested on Ubuntu 17.04).
 
 ## Troubleshooting
 
@@ -125,7 +125,6 @@ If you found this plugin of your interest or if you need to control other media 
 This plugin is inspired by [`atom-spotify2`](https://github.com/albertorestifo/atom-spotify2) and relies on 
 - [`spotify-node-applescript`](https://github.com/andrehaveman/spotify-node-applescript) on macOS
 - [`node-dbus`](https://github.com/sidorares/node-dbus) on Linux
-- [`spotilocal`](https://github.com/ShyykoSerhiy/spotilocal) on Windows
 
 to interact with [Spotify](https://www.spotify.com) client
 

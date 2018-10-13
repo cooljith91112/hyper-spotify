@@ -1,12 +1,15 @@
 {
   "name": "hyper-spotify",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "description": "Add a Spotify controller to Hyper.",
   "keywords": [
     "hyperterm",
     "hyper",
     "spotify",
     "hyper-spotify"
+  ],
+  "os": [
+    "!win32"
   ],
   "author": "Mattia Panzeri <mattia.panzeri93@gmail.com>",
   "license": "MIT",
@@ -30,7 +33,6 @@
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "babel-runtime": "^6.23.0",
     "dbus-native": "^0.2.3",
     "lodash.capitalize": "^4.2.1",
     "lodash.get": "^4.4.2",
@@ -39,8 +41,7 @@
     "lodash.reduce": "^4.6.0",
     "lodash.split": "^4.4.2",
     "lodash.tolower": "^4.1.2",
-    "spotify-node-applescript": "^1.0.0",
-    "spotilocal": "^0.4.4"
+    "spotify-node-applescript": "^1.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.23.0",
