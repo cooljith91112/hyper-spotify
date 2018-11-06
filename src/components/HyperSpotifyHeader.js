@@ -22,7 +22,6 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
     position: 'relative',
-    opacity: '0.5',
-    marginTop: 34
+    opacity: '0.5'
   }
 }

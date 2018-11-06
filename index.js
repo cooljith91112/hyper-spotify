@@ -34,6 +34,10 @@ exports.decorateConfig = (config) => {
           margin-${position}: ${marginValue}px;
       }
 
+      .hyper-spotify {
+        margin-${position}: ${marginValue - 30}px;
+      }
+
       .hyper-spotify.hoverable:hover,
       .hyper-spotify .hoverable:hover {
         opacity: 1 !important;
