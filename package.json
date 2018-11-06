@@ -33,6 +33,7 @@
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
+    "babel-runtime": "^6.26.0",
     "dbus-native": "^0.2.3",
     "lodash.capitalize": "^4.2.1",
     "lodash.get": "^4.4.2",
