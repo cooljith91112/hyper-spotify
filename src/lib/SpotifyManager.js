@@ -1,4 +1,6 @@
 import os from 'os'
+import opn from 'opn'
+
 import { SpotifyDarwin, SpotifyLinux, SpotifyDefault } from './spotify'
 
 class SpotifyManager {
@@ -15,6 +17,10 @@ class SpotifyManager {
       default:
         this.spotifyService = new SpotifyDefault()
     }
+  }
+
+  launchSpotify() {
+    return opn('spotify://')
   }
 
   supportedActions () {

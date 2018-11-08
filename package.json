@@ -42,6 +42,7 @@
     "lodash.reduce": "^4.6.0",
     "lodash.split": "^4.4.2",
     "lodash.tolower": "^4.1.2",
+    "opn": "^5.4.0",
     "spotify-node-applescript": "^1.0.0"
   },
   "devDependencies": {

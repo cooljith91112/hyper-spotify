@@ -123,6 +123,11 @@ const HyperSpotifyWidgetFactory = (React) => {
       }
     }
 
+    _launchSpotify () {
+      console.log('Start Spotify')
+      this.spotifyManager.launchSpotify();
+    }
+
     componentDidMount () {
       // console.log('HyperSpotifyWidget didMount')
 
@@ -216,7 +221,7 @@ const HyperSpotifyWidgetFactory = (React) => {
       return (
         <Icon
           iconName='spotify'
-          onClick={() => console.log('Start Spotify')}
+          onClick={() => this._launchSpotify()}
           style={iconStyle}
         />
       )
@@ -272,7 +277,7 @@ const styles = {
   },
   'iconStyle': {
     height: 16,
-    width: 17
+    width: 18
   },
   'playIconStyle': {
     marginLeft: 6,
