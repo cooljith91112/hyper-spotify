@@ -1,6 +1,6 @@
 {
   "name": "hyper-spotify",
-  "version": "5.0.2",
+  "version": "5.1.0-beta.1",
   "description": "Add a Spotify controller to Hyper.",
   "keywords": [
     "hyperterm",
