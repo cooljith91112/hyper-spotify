@@ -124,7 +124,7 @@ const HyperSpotifyWidgetFactory = (React) => {
     }
 
     _launchSpotify () {
-      console.log('Start Spotify')
+      // console.log('Start Spotify')
       this.spotifyManager.launchSpotify();
     }
 
