@@ -113,6 +113,13 @@ if even after restaring the issue persists try running the following command
 $ cd ~/.hyper_plugins && npm install
 ```
 
+### `abstract-socket` module error
+If you get an error related to `abstract-socket` not being compiled with the correct Node version, you can try the following solution:
+- Retrieve `Hyper` electron version by running `process.versions.electron` inside Hyper DevTools console
+- Run `~/.hyper_plugins/node_modules/.bin/electron-rebuild -v [output of process.versions.electron]` inside the terminal
+
+For more details see [issue #13](https://github.com/panz3r/hyper-spotify/issues/13#issuecomment-453855958).
+
 <br />
 
 ## Related Projects
