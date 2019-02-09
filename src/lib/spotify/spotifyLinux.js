@@ -1,8 +1,5 @@
 import dbus from 'dbus-native'
-import join from 'lodash.join'
-import reduce from 'lodash.reduce'
-import split from 'lodash.split'
-import toLower from 'lodash.tolower'
+import { join, reduce, split, toLower } from 'lodash'
 
 class SpotifyLinux {
   constructor () {

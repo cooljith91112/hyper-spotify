@@ -1,4 +1,4 @@
-import isEqual from 'lodash.isequal'
+import { isEqual } from 'lodash'
 import SpotifyManager from '../lib/SpotifyManager'
 import IconFactory from '../components/Icon'
 import TrackInfoFactory from '../components/TrackInfo'

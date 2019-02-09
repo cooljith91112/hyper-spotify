@@ -1,4 +1,4 @@
-const get = require('lodash.get')
+const _ = require('lodash')
 const { getThemeCssByName } = require('./dist/utils/ThemeManager')
 const { HyperSpotifyHeaderFactory } = require('./dist/components/HyperSpotifyHeader')
 const { HyperSpotifyFooterFactory } = require('./dist/components/HyperSpotifyFooter')
@@ -59,7 +59,7 @@ exports.reduceUI = (state, {type, config}) => {
 
 exports.mapHyperState = ({ ui: { hyperSpotify } }, map) => Object.assign({}, map, {
   hyperSpotify: Object.assign({}, hyperSpotify),
-  customCSS: `${map.customCSS || ''} ${getThemeCssByName(get(hyperSpotify, 'theme', 'default'), hyperSpotify)}`
+  customCSS: `${map.customCSS || ''} ${getThemeCssByName(_.get(hyperSpotify, 'theme', 'default'), hyperSpotify)}`
 })
 
 exports.decorateHyper = (Hyper, { React }) => {
@@ -75,7 +75,7 @@ exports.decorateHyper = (Hyper, { React }) => {
 
       let customInnerChildren = existingInnerChildren ? existingInnerChildren instanceof Array ? existingInnerChildren : [existingInnerChildren] : []
 
-      const position = get(pluginConfig, 'position', 'bottom')
+      const position = _.get(pluginConfig, 'position', 'bottom')
       if (position === 'top') {
         customInnerChildren = [].concat(React.createElement(HyperSpotifyHeader, { pluginConfig }), customInnerChildren)
       } else if (position === 'bottom') {

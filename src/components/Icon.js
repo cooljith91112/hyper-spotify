@@ -1,4 +1,4 @@
-import capitalize from 'lodash.capitalize'
+import { capitalize } from 'lodash'
 
 const IconFactory = (React) => ({ iconName, onClick, style }) => {
   const className = `hyper-spotify-icon hyper-spotify-icon-${iconName} hoverable`
