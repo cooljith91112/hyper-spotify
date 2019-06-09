@@ -138,3 +138,11 @@ to interact with [Spotify](https://www.spotify.com) client
 ## Special Thanks
 
 - [@OrionNebula](https://github.com/OrionNebula) for `Windows` support initial implementation.
+
+---
+
+Made with :sparkles: & :heart: by [Mattia Panzeri](https://github.com/panz3r) and [contributors](https://github.com/panz3r/hyper-spotify/graphs/contributors)
+
+If you found this project to be helpful, please consider buying me a coffee.
+
+[![buy me a coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://buymeacoff.ee/4f18nT0Nk)
