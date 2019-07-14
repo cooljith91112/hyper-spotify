@@ -17,7 +17,7 @@ export const HyperSpotifyHeaderFactory = (React) => {
 }
 
 const styles = {
-  'headerStyle': {
+  headerStyle: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',

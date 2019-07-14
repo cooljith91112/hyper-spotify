@@ -113,19 +113,19 @@ const HyperSpotifyWidgetFactory = (React) => {
 
       if (isRunning) {
         this._getSkipPromise(skipAction)
-            .then((track) => {
-              // console.log('newTrack', track)
-              this.setState({ track })
-            })
-            .catch(() => {
-              this.setState({ ...initialState })
-            })
+          .then((track) => {
+            // console.log('newTrack', track)
+            this.setState({ track })
+          })
+          .catch(() => {
+            this.setState({ ...initialState })
+          })
       }
     }
 
     _launchSpotify () {
       // console.log('Start Spotify')
-      this.spotifyManager.launchSpotify();
+      this.spotifyManager.launchSpotify()
     }
 
     componentDidMount () {
@@ -250,7 +250,7 @@ const HyperSpotifyWidgetFactory = (React) => {
 }
 
 const styles = {
-  'widgetStyle': {
+  widgetStyle: {
     height: 30,
     fontSize: 12,
     display: 'flex',
@@ -258,28 +258,28 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center'
   },
-  'controlsContainerStyle': {
+  controlsContainerStyle: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
     marginRight: 6
   },
-  'leftControlsContainerStyle': {
+  leftControlsContainerStyle: {
     position: 'absolute',
     left: 14,
     marginRight: 0
   },
-  'rightControlsContainerStyle': {
+  rightControlsContainerStyle: {
     position: 'absolute',
     right: 14,
     marginRight: 0
   },
-  'iconStyle': {
+  iconStyle: {
     height: 16,
     width: 18
   },
-  'playIconStyle': {
+  playIconStyle: {
     marginLeft: 6,
     marginRight: 6
   }

@@ -12,7 +12,7 @@ class SpotifyLinux {
       'togglePlayPause',
       'previousTrack',
       'nextTrack'
-    ];
+    ]
   }
 
   isRunning () {

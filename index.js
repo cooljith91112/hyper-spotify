@@ -46,7 +46,7 @@ exports.decorateConfig = (config) => {
   })
 }
 
-exports.reduceUI = (state, {type, config}) => {
+exports.reduceUI = (state, { type, config }) => {
   switch (type) {
     case 'CONFIG_LOAD':
     case 'CONFIG_RELOAD': {

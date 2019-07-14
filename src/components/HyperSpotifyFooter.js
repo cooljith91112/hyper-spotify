@@ -17,7 +17,7 @@ export const HyperSpotifyFooterFactory = (React) => {
 }
 
 const styles = {
-  'footerStyle': {
+  footerStyle: {
     position: 'absolute',
     right: 0,
     bottom: 0,

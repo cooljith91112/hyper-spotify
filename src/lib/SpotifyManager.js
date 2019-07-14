@@ -19,7 +19,7 @@ class SpotifyManager {
     }
   }
 
-  launchSpotify() {
+  launchSpotify () {
     return opn('spotify://')
   }
 

@@ -1,13 +1,12 @@
 import spotify from 'spotify-node-applescript'
 
 class SpotifyDarwin {
-
   supportedActions () {
     return [
       'togglePlayPause',
       'previousTrack',
       'nextTrack'
-    ];
+    ]
   }
 
   isRunning () {
@@ -56,7 +55,7 @@ class SpotifyDarwin {
         }
       })
     })
-    .then(() => this.getState())
+      .then(() => this.getState())
   }
 
   previousTrack () {
@@ -69,7 +68,7 @@ class SpotifyDarwin {
         }
       })
     })
-    .then(() => this.getTrack())
+      .then(() => this.getTrack())
   }
 
   nextTrack () {
@@ -82,7 +81,7 @@ class SpotifyDarwin {
         }
       })
     })
-    .then(() => this.getTrack())
+      .then(() => this.getTrack())
   }
 }
 
