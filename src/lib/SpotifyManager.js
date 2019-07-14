@@ -1,5 +1,5 @@
 import os from 'os'
-import opn from 'opn'
+import opn from 'open'
 
 import { SpotifyDarwin, SpotifyLinux, SpotifyDefault } from './spotify'
 
