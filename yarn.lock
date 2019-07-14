@@ -3469,10 +3469,10 @@ split@0.3:
   dependencies:
     through "2"
 
-spotify-node-applescript@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/spotify-node-applescript/-/spotify-node-applescript-1.0.0.tgz#19bcc81cbe482129c1dcc7bddb2e12d205a774e9"
-  integrity sha1-GbzIHL5IISnB3Me92y4S0gWndOk=
+spotify-node-applescript@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/spotify-node-applescript/-/spotify-node-applescript-1.1.1.tgz#f64ac713a807cd2b9333452abc38b0ca89287b03"
+  integrity sha512-6sjOczwm2N+yOyZbLSoE/fZsWdyOUI9wOT0/GiTrmq+aGrtPIuxlqeCGeZzrYK0qHUO08vQXpleeId6hQjsgig==
   dependencies:
     applescript "1.0.0"
 

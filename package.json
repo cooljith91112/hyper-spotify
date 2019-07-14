@@ -37,7 +37,7 @@
     "dbus-native": "^0.2.3",
     "lodash": "^4.17.14",
     "open": "^6.4.0",
-    "spotify-node-applescript": "^1.0.0"
+    "spotify-node-applescript": "^1.1.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0",
