@@ -26,7 +26,8 @@
     "dist"
   ],
   "scripts": {
-    "lint": "standard './src/**.js' | snazzy",
+    "lint": "standard './src/**/*.js'",
+    "lint:fix": "standard './src/**/*.js' --fix",
     "prebuild": "yarn lint && rimraf ./dist",
     "build": "babel ./src --out-dir ./dist --copy-files",
     "build:watch": "babel --watch ./src --out-dir ./dist --source-maps --copy-files",
@@ -47,7 +48,6 @@
     "@babel/preset-react": "^7.0.0",
     "babel-eslint": "^10.0.2",
     "rimraf": "^2.6.3",
-    "snazzy": "^8.0.0",
     "standard": "13.0.2"
   },
   "standard": {
