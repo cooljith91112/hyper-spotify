@@ -1,24 +1,16 @@
-import IconFactory from './Icon'
+import IconFactory from './Icon';
 
 const PlayerControlsFactory = React => {
-  const Icon = IconFactory(React)
+  const Icon = IconFactory(React);
 
-  return ({
-    isPlaying,
-    onNext,
-    onPrevious,
-    onTogglePlayState,
-    supportedActions
-  }) => (
+  const PlayerControls = ({isPlaying, onNext, onPrevious, onTogglePlayState, supportedActions}) => (
     <div style={styles.controlsContainerStyle}>
       <Icon
-        iconName='previous'
+        iconName="previous"
         onClick={onPrevious}
         style={{
           ...styles.iconStyle,
-          display: !supportedActions.includes('previousTrack')
-            ? 'none'
-            : 'inherit'
+          display: !supportedActions.includes('previousTrack') ? 'none' : 'inherit'
         }}
       />
 
@@ -28,14 +20,12 @@ const PlayerControlsFactory = React => {
         style={{
           ...styles.iconStyle,
           ...styles.playIconStyle,
-          display: !supportedActions.includes('togglePlayPause')
-            ? 'none'
-            : 'inherit'
+          display: !supportedActions.includes('togglePlayPause') ? 'none' : 'inherit'
         }}
       />
 
       <Icon
-        iconName='next'
+        iconName="next"
         onClick={onNext}
         style={{
           ...styles.iconStyle,
@@ -43,8 +33,10 @@ const PlayerControlsFactory = React => {
         }}
       />
     </div>
-  )
-}
+  );
+
+  return PlayerControls;
+};
 
 const styles = {
   controlsContainerStyle: {
@@ -63,6 +55,6 @@ const styles = {
     marginLeft: 6,
     marginRight: 6
   }
-}
+};
 
-export default PlayerControlsFactory
+export default PlayerControlsFactory;

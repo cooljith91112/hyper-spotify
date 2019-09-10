@@ -1,15 +1,19 @@
-const TrackInfoFactory = React => ({ track }) => {
-  return (
-    <div className='hyper-spotify-track' style={styles.trackInfoContainer}>
-      <b>{track.name}</b>
-      {track.artist ? (
-        <span> by <b>{track.artist}</b></span>
-      ) : (
-        ''
-      )}
-    </div>
-  )
-}
+const TrackInfoFactory = React =>
+  function TrackInfo({track}) {
+    return (
+      <div className="hyper-spotify-track" style={styles.trackInfoContainer}>
+        <b>{track.name}</b>
+        {track.artist ? (
+          <span>
+            {' '}
+            by <b>{track.artist}</b>
+          </span>
+        ) : (
+          ''
+        )}
+      </div>
+    );
+  };
 
 const styles = {
   trackInfoContainer: {
@@ -18,6 +22,6 @@ const styles = {
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap'
   }
-}
+};
 
-export default TrackInfoFactory
+export default TrackInfoFactory;

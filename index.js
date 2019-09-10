@@ -1,30 +1,33 @@
-const _ = require('lodash')
-const { getThemeCssByName } = require('./dist/utils/ThemeManager')
-const { HyperSpotifyHeaderFactory } = require('./dist/components/HyperSpotifyHeader')
-const { HyperSpotifyFooterFactory } = require('./dist/components/HyperSpotifyFooter')
-const { defaultKeymaps, RPCEvents } = require('./dist/constants')
+const _ = require('lodash');
+const {getThemeCssByName} = require('./dist/utils/ThemeManager');
+const {HyperSpotifyHeaderFactory} = require('./dist/components/HyperSpotifyHeader');
+const {HyperSpotifyFooterFactory} = require('./dist/components/HyperSpotifyFooter');
+const {defaultKeymaps, RPCEvents} = require('./dist/constants');
 
-exports.decorateConfig = (config) => {
-  const hyperSpotify = Object.assign({
-    position: 'bottom',
-    margin: 'default',
-    controlsPosition: 'default'
-  }, config.hyperSpotify)
+exports.decorateConfig = config => {
+  const hyperSpotify = Object.assign(
+    {
+      position: 'bottom',
+      margin: 'default',
+      controlsPosition: 'default'
+    },
+    config.hyperSpotify
+  );
 
-  const { position, margin } = hyperSpotify
+  const {position, margin} = hyperSpotify;
 
-  let marginValue = (position === 'top' ? 34 : 0)
+  let marginValue = position === 'top' ? 34 : 0;
   switch (margin) {
     case 'default':
-      marginValue += 30
-      break
+      marginValue += 30;
+      break;
 
     case 'double':
-      marginValue += 60
-      break
+      marginValue += 60;
+      break;
 
     default:
-      marginValue = margin
+      marginValue = margin;
   }
 
   return Object.assign({}, config, {
@@ -44,29 +47,30 @@ exports.decorateConfig = (config) => {
         opacity: 1 !important;
       }
     `
-  })
-}
+  });
+};
 
-exports.reduceUI = (state, { type, config }) => {
+exports.reduceUI = (state, {type, config}) => {
   switch (type) {
     case 'CONFIG_LOAD':
     case 'CONFIG_RELOAD': {
-      return state.set('hyperSpotify', config.hyperSpotify)
+      return state.set('hyperSpotify', config.hyperSpotify);
     }
   }
 
-  return state
-}
+  return state;
+};
 
-exports.mapHyperState = ({ ui: { hyperSpotify } }, map) => Object.assign({}, map, {
-  hyperSpotify: Object.assign({}, hyperSpotify),
-  customCSS: `${map.customCSS || ''} ${getThemeCssByName(_.get(hyperSpotify, 'theme', 'default'), hyperSpotify)}`
-})
+exports.mapHyperState = ({ui: {hyperSpotify}}, map) =>
+  Object.assign({}, map, {
+    hyperSpotify: Object.assign({}, hyperSpotify),
+    customCSS: `${map.customCSS || ''} ${getThemeCssByName(_.get(hyperSpotify, 'theme', 'default'), hyperSpotify)}`
+  });
 
-exports.decorateKeymaps = keymaps => Object.assign({}, defaultKeymaps, keymaps)
+exports.decorateKeymaps = keymaps => Object.assign({}, defaultKeymaps, keymaps);
 
-exports.decorateMenu = (menu) => {
-  const keymaps = Object.assign({}, defaultKeymaps)
+exports.decorateMenu = menu => {
+  const keymaps = Object.assign({}, defaultKeymaps);
 
   for (const menuItem of menu) {
     if (menuItem.label === 'Plugins') {
@@ -79,34 +83,34 @@ exports.decorateMenu = (menu) => {
               accelerator: keymaps[RPCEvents.togglePlayPause],
               click(item, focusedWindow) {
                 if (focusedWindow) {
-                  focusedWindow.rpc.emit(RPCEvents.togglePlayPause, { focusedWindow });
+                  focusedWindow.rpc.emit(RPCEvents.togglePlayPause, {focusedWindow});
                 }
-              },
+              }
             },
             {
               label: 'Previous Song',
               accelerator: keymaps[RPCEvents.prevSong],
               click(item, focusedWindow) {
                 if (focusedWindow) {
-                  focusedWindow.rpc.emit(RPCEvents.prevSong, { focusedWindow });
+                  focusedWindow.rpc.emit(RPCEvents.prevSong, {focusedWindow});
                 }
-              },
+              }
             },
             {
               label: 'Next Song',
               accelerator: keymaps[RPCEvents.nextSong],
               click(item, focusedWindow) {
                 if (focusedWindow) {
-                  focusedWindow.rpc.emit(RPCEvents.nextSong, { focusedWindow });
+                  focusedWindow.rpc.emit(RPCEvents.nextSong, {focusedWindow});
                 }
-              },
-            },
-          ],
+              }
+            }
+          ]
         },
         {
           type: 'separator'
-        }, 
-        menuItem.submenu,
+        },
+        menuItem.submenu
       );
       break;
     }
@@ -114,29 +118,28 @@ exports.decorateMenu = (menu) => {
   return menu;
 };
 
-exports.decorateHyper = (Hyper, { React }) => {
-  const HyperSpotifyHeader = HyperSpotifyHeaderFactory(React) // eslint-disable-line no-unused-vars
-  const HyperSpotifyFooter = HyperSpotifyFooterFactory(React) // eslint-disable-line no-unused-vars
+exports.decorateHyper = (Hyper, {React}) => {
+  const HyperSpotifyHeader = HyperSpotifyHeaderFactory(React); // eslint-disable-line no-unused-vars
+  const HyperSpotifyFooter = HyperSpotifyFooterFactory(React); // eslint-disable-line no-unused-vars
 
-  return class extends React.PureComponent {
-    render () {
-      const {
-        customInnerChildren: existingInnerChildren,
-        hyperSpotify: pluginConfig
-      } = this.props
+  return class HyperSpotify extends React.PureComponent {
+    render() {
+      const {customInnerChildren: existingInnerChildren, hyperSpotify: pluginConfig} = this.props;
 
-      let customInnerChildren = existingInnerChildren ? existingInnerChildren instanceof Array ? existingInnerChildren : [existingInnerChildren] : []
+      let customInnerChildren = existingInnerChildren
+        ? existingInnerChildren instanceof Array
+          ? existingInnerChildren
+          : [existingInnerChildren]
+        : [];
 
-      const position = _.get(pluginConfig, 'position', 'bottom')
+      const position = _.get(pluginConfig, 'position', 'bottom');
       if (position === 'top') {
-        customInnerChildren = [].concat(React.createElement(HyperSpotifyHeader, { pluginConfig }), customInnerChildren)
+        customInnerChildren = [].concat(React.createElement(HyperSpotifyHeader, {pluginConfig}), customInnerChildren);
       } else if (position === 'bottom') {
-        customInnerChildren = [].concat(customInnerChildren, React.createElement(HyperSpotifyFooter, { pluginConfig }))
+        customInnerChildren = [].concat(customInnerChildren, React.createElement(HyperSpotifyFooter, {pluginConfig}));
       }
 
-      return (
-        React.createElement(Hyper, Object.assign({}, this.props, { customInnerChildren }))
-      )
+      return React.createElement(Hyper, Object.assign({}, this.props, {customInnerChildren}));
     }
-  }
-}
+  };
+};

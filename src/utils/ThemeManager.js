@@ -14,7 +14,7 @@ const defaultTheme = `
   .hyper-spotify .hyper-spotify-track {
     color: #FFF;
   }
-`
+`;
 
 const lightTheme = `
   .hyper-spotify .hyper-spotify-overlay {
@@ -28,7 +28,7 @@ const lightTheme = `
   .hyper-spotify .hyper-spotify-track {
     color: #FFF;
   }
-`
+`;
 
 const darkTheme = `
   .hyper-spotify .hyper-spotify-overlay {
@@ -42,7 +42,7 @@ const darkTheme = `
   .hyper-spotify .hyper-spotify-track {
     color: #000;
   }
-`
+`;
 
 // spotify:track:6wYJJ8AEhgS2euFsuTvZ1g
 const halloweenTheme = `
@@ -57,7 +57,7 @@ const halloweenTheme = `
   .hyper-spotify .hyper-spotify-track {
     color: #D75C1B;
   }
-`
+`;
 
 export const getThemeCssByVariables = (overlayColor, iconColor, spotifyIconColor, textColor) => {
   return `
@@ -76,26 +76,26 @@ export const getThemeCssByVariables = (overlayColor, iconColor, spotifyIconColor
     .hyper-spotify .hyper-spotify-track {
       color: ${textColor || '#FFF'};
     }
-  `
-}
+  `;
+};
 
-export const getThemeCssByName = (themeName, { overlayColor, iconColor, spotifyIconColor, textColor } = {}) => {
+export const getThemeCssByName = (themeName, {overlayColor, iconColor, spotifyIconColor, textColor} = {}) => {
   switch (themeName) {
     case 'light':
-      return lightTheme
+      return lightTheme;
 
     case 'dark':
-      return darkTheme
+      return darkTheme;
 
     case 'halloween':
-      return halloweenTheme
+      return halloweenTheme;
 
     case 'custom':
-      return getThemeCssByVariables(overlayColor, iconColor, spotifyIconColor, textColor)
+      return getThemeCssByVariables(overlayColor, iconColor, spotifyIconColor, textColor);
 
     default:
-      return defaultTheme
+      return defaultTheme;
   }
-}
+};
 
-export default { getThemeCssByName, getThemeCssByVariables }
+export default {getThemeCssByName, getThemeCssByVariables};

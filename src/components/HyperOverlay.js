@@ -1,5 +1,7 @@
-
-const HyperSpotifyOverlayFactory = React => () => <span className='hyper-spotify-overlay' style={styles.overlayStyle} />
+const HyperSpotifyOverlayFactory = React =>
+  function HyperOverlay() {
+    return <span className="hyper-spotify-overlay" style={styles.overlayStyle} />;
+  };
 
 const styles = {
   overlayStyle: {
@@ -10,6 +12,6 @@ const styles = {
     right: 0,
     opacity: 0.07
   }
-}
+};
 
-export default HyperSpotifyOverlayFactory
+export default HyperSpotifyOverlayFactory;

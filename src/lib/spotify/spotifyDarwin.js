@@ -1,88 +1,81 @@
-import spotify from 'spotify-node-applescript'
+import spotify from 'spotify-node-applescript';
 
 class SpotifyDarwin {
-  supportedActions () {
-    return [
-      'togglePlayPause',
-      'previousTrack',
-      'nextTrack'
-    ]
+  supportedActions() {
+    return ['togglePlayPause', 'previousTrack', 'nextTrack'];
   }
 
-  isRunning () {
+  isRunning() {
     return new Promise((resolve, reject) => {
       spotify.isRunning((err, isRunning) => {
         if (err) {
-          reject(err)
+          reject(err);
         } else {
-          resolve(isRunning)
+          resolve(isRunning);
         }
-      })
-    })
+      });
+    });
   }
 
-  getState () {
+  getState() {
     return new Promise((resolve, reject) => {
       spotify.getState((err, state) => {
         if (err) {
-          reject(err)
+          reject(err);
         } else {
-          resolve(state)
+          resolve(state);
         }
-      })
-    })
+      });
+    });
   }
 
-  getTrack () {
+  getTrack() {
     return new Promise((resolve, reject) => {
       spotify.getTrack((err, track) => {
         if (err) {
-          reject(err)
+          reject(err);
         } else {
-          resolve(track)
+          resolve(track);
         }
-      })
-    })
+      });
+    });
   }
 
-  togglePlayPause () {
+  togglePlayPause() {
     return new Promise((resolve, reject) => {
-      spotify.playPause((err) => {
+      spotify.playPause(err => {
         if (err) {
-          reject(err)
+          reject(err);
         } else {
-          resolve()
+          resolve();
         }
-      })
-    })
-      .then(() => this.getState())
+      });
+    }).then(() => this.getState());
   }
 
-  previousTrack () {
+  previousTrack() {
     return new Promise((resolve, reject) => {
-      spotify.previous((err) => {
+      spotify.previous(err => {
         if (err) {
-          reject(err)
+          reject(err);
         } else {
-          resolve()
+          resolve();
         }
-      })
-    })
-      .then(() => this.getTrack())
+      });
+    }).then(() => this.getTrack());
   }
 
-  nextTrack () {
+  nextTrack() {
     return new Promise((resolve, reject) => {
-      spotify.next((err) => {
+      spotify.next(err => {
         if (err) {
-          reject(err)
+          reject(err);
         } else {
-          resolve()
+          resolve();
         }
-      })
-    })
-      .then(() => this.getTrack())
+      });
+    }).then(() => this.getTrack());
   }
 }
 
-export default SpotifyDarwin
+export default SpotifyDarwin;

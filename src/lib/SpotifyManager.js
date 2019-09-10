@@ -1,55 +1,55 @@
-import os from 'os'
-import opn from 'open'
+import os from 'os';
+import opn from 'open';
 
-import { SpotifyDarwin, SpotifyLinux, SpotifyDefault } from './spotify'
+import {SpotifyDarwin, SpotifyLinux, SpotifyDefault} from './spotify';
 
 class SpotifyManager {
-  constructor () {
+  constructor() {
     switch (os.platform()) {
       case 'darwin':
-        this.spotifyService = new SpotifyDarwin()
-        break
+        this.spotifyService = new SpotifyDarwin();
+        break;
 
       case 'linux':
-        this.spotifyService = new SpotifyLinux()
-        break
+        this.spotifyService = new SpotifyLinux();
+        break;
 
       default:
-        this.spotifyService = new SpotifyDefault()
+        this.spotifyService = new SpotifyDefault();
     }
   }
 
-  launchSpotify () {
-    return opn('spotify://')
+  launchSpotify() {
+    return opn('spotify://');
   }
 
-  supportedActions () {
-    return this.spotifyService.supportedActions()
+  supportedActions() {
+    return this.spotifyService.supportedActions();
   }
 
-  isRunning () {
-    return this.spotifyService.isRunning()
+  isRunning() {
+    return this.spotifyService.isRunning();
   }
 
-  getState () {
-    return this.spotifyService.getState()
+  getState() {
+    return this.spotifyService.getState();
   }
 
-  togglePlayPause () {
-    return this.spotifyService.togglePlayPause()
+  togglePlayPause() {
+    return this.spotifyService.togglePlayPause();
   }
 
-  previousTrack () {
-    return this.spotifyService.previousTrack()
+  previousTrack() {
+    return this.spotifyService.previousTrack();
   }
 
-  nextTrack () {
-    return this.spotifyService.nextTrack()
+  nextTrack() {
+    return this.spotifyService.nextTrack();
   }
 
-  getTrack () {
-    return this.spotifyService.getTrack()
+  getTrack() {
+    return this.spotifyService.getTrack();
   }
 }
 
-export default SpotifyManager
+export default SpotifyManager;

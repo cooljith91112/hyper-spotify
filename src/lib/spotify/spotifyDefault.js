@@ -1,15 +1,15 @@
 class SpotifyDefault {
-  constructor () {
-    console.error('[hyper-spotify] Unsupported OS')
+  constructor() {
+    console.error('[hyper-spotify] Unsupported OS'); // eslint-disable-line no-console
   }
 
-  supportedActions () {
-    return []
+  supportedActions() {
+    return [];
   }
 
-  isRunning () {
-    Promise.resolve(false)
+  isRunning() {
+    Promise.resolve(false);
   }
 }
 
-export default SpotifyDefault
+export default SpotifyDefault;
