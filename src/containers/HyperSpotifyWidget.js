@@ -1,13 +1,34 @@
 import { isEqual } from 'lodash'
 import SpotifyManager from '../lib/SpotifyManager'
 import IconFactory from '../components/Icon'
+import PlayerControlsFactory from '../components/PlayerControls'
 import TrackInfoFactory from '../components/TrackInfo'
 import { RPCEvents } from '../constants'
 
-const HyperSpotifyWidgetFactory = (React) => {
-  const { Component } = React
+const getWidgetStyle = controlsPosition => {
+  switch (controlsPosition) {
+    case 'left':
+      return {
+        ...styles.widgetStyle,
+        ...styles.leftControlsWidgetStyle
+      }
 
+    case 'right':
+      return {
+        ...styles.widgetStyle,
+        ...styles.rightControlsWidgetStyle
+      }
+
+    default:
+      return {
+        ...styles.widgetStyle
+      }
+  }
+}
+
+const HyperSpotifyWidgetFactory = React => {
   const Icon = IconFactory(React) // eslint-disable-line no-unused-vars
+  const PlayerControls = PlayerControlsFactory(React) // eslint-disable-line no-unused-vars
   const TrackInfo = TrackInfoFactory(React) // eslint-disable-line no-unused-vars
 
   const skipActions = {
@@ -16,28 +37,24 @@ const HyperSpotifyWidgetFactory = (React) => {
   }
 
   const initialState = {
-    isRunning: false,
     isPlaying: false,
+    isRunning: false,
     track: {
-      name: '',
-      artist: ''
+      artist: '',
+      name: ''
     }
   }
 
-  return class extends Component {
+  return class extends React.Component {
     constructor (props) {
       super(props)
 
       this.state = {
-        isRunning: false,
-        isPlaying: false,
-        track: {
-          name: '',
-          artist: ''
-        }
+        ...initialState
       }
 
       this.spotifyManager = new SpotifyManager()
+      this.supportedSpotifyActions = this.spotifyManager.supportedActions()
     }
 
     componentDidMount () {
@@ -50,9 +67,9 @@ const HyperSpotifyWidgetFactory = (React) => {
       this.performSoundCheck()
 
       // Attach shortcut handlers
-      window.rpc.on(RPCEvents.togglePlayPause, this.togglePlayState);
-      window.rpc.on(RPCEvents.prevSong, this.skipToPrevious);
-      window.rpc.on(RPCEvents.nextSong, this.skipToNext);
+      window.rpc.on(RPCEvents.togglePlayPause, this.togglePlayState)
+      window.rpc.on(RPCEvents.prevSong, this.skipToPrevious)
+      window.rpc.on(RPCEvents.nextSong, this.skipToNext)
     }
 
     componentWillUnmount () {
@@ -63,9 +80,9 @@ const HyperSpotifyWidgetFactory = (React) => {
       }
 
       // Remove shortcut handlers
-      window.rpc.removeListener(RPCEvents.togglePlayPause, this.togglePlayState);
-      window.rpc.removeListener(RPCEvents.prevSong, this.skipToPrevious);
-      window.rpc.removeListener(RPCEvents.nextSong, this.skipToNext);
+      window.rpc.removeListener(RPCEvents.togglePlayPause, this.togglePlayState)
+      window.rpc.removeListener(RPCEvents.prevSong, this.skipToPrevious)
+      window.rpc.removeListener(RPCEvents.nextSong, this.skipToNext)
     }
 
     shouldComponentUpdate (nextProps, nextState) {
@@ -74,7 +91,6 @@ const HyperSpotifyWidgetFactory = (React) => {
 
     performSoundCheck () {
       // console.log('SoundCheck...', new Date(), 'at', this)
-      const { spotifyManager } = this
 
       // _reactInternalInstance (Hyper 1.x) || _reactInternalFiber (Hyper 2.x)
       if (!this._reactInternalInstance && !this._reactInternalFiber) {
@@ -86,19 +102,21 @@ const HyperSpotifyWidgetFactory = (React) => {
         return
       }
 
-      spotifyManager.isRunning()
+      this.spotifyManager
+        .isRunning()
         .then(isRunning => {
           this.setState({ isRunning })
 
           if (isRunning) {
             // Get Play/Pause state
-            spotifyManager.getState()
+            this.spotifyManager
+              .getState()
               .then(({ state }) => {
-                this.setState({ isPlaying: (state === 'playing') })
+                this.setState({ isPlaying: state === 'playing' })
                 // Get Track details
-                return spotifyManager.getTrack()
+                return this.spotifyManager.getTrack()
               })
-              .then((track) => {
+              .then(track => {
                 // console.log('currentTrack', track)
                 this.setState({ track })
               })
@@ -115,38 +133,38 @@ const HyperSpotifyWidgetFactory = (React) => {
     }
 
     togglePlayState = () => {
-      const { spotifyManager, state: { isRunning } } = this
+      const { isRunning } = this.state
 
       if (isRunning) {
-        spotifyManager.togglePlayPause()
-          .then((spotifyState) => {
-            this.setState({ isPlaying: (spotifyState.state === 'playing') })
+        this.spotifyManager
+          .togglePlayPause()
+          .then(spotifyState => {
+            this.setState({ isPlaying: spotifyState.state === 'playing' })
           })
           .catch(() => {
             this.setState({ ...initialState })
           })
       }
-    }
+    };
 
     _getSkipPromise (skipAction) {
-      const { spotifyManager } = this
       const { previous, next } = skipActions
 
       switch (skipAction) {
         case previous:
-          return spotifyManager.previousTrack()
+          return this.spotifyManager.previousTrack()
 
         case next:
-          return spotifyManager.nextTrack()
+          return this.spotifyManager.nextTrack()
       }
     }
 
-    skipTo = (skipAction) => {
+    skipTo = skipAction => {
       const { isRunning } = this.state
 
       if (isRunning) {
         this._getSkipPromise(skipAction)
-          .then((track) => {
+          .then(track => {
             // console.log('newTrack', track)
             this.setState({ track })
           })
@@ -154,107 +172,53 @@ const HyperSpotifyWidgetFactory = (React) => {
             this.setState({ ...initialState })
           })
       }
+    };
+
+    skipToNext = () => this.skipTo(skipActions.next);
+
+    skipToPrevious = () => this.skipTo(skipActions.previous);
+
+    _launchSpotify = () => this.spotifyManager.launchSpotify();
+
+    renderSpacer (controlsPosition) {
+      if (controlsPosition !== 'center') {
+        return <div style={styles.spacer} />
+      }
+
+      return null
     }
 
-    skipToNext = () => this.skipTo(skipActions.next)
-    
-    skipToPrevious = () => this.skipTo(skipActions.previous)
+    render () {
+      const { pluginConfig } = this.props
+      const { isPlaying, isRunning, track } = this.state
 
-    _launchSpotify = () => this.spotifyManager.launchSpotify()
+      const { controlsPosition } = pluginConfig
 
-    renderControls () {
-      const {
-        previous,
-        next
-      } = skipActions
-
-      const {
-        controlsContainerStyle,
-        leftControlsContainerStyle,
-        rightControlsContainerStyle,
-        iconStyle,
-        playIconStyle
-      } = styles
-
-      const {
-        isRunning,
-        isPlaying
-      } = this.state
-
-      const {
-        pluginConfig: {
-          controlsPosition
-        }
-      } = this.props
-
-      const { spotifyManager } = this
-
-      if (isRunning) {
-        let controlsStyle = controlsContainerStyle
-
-        switch (controlsPosition) {
-          case 'left':
-            controlsStyle = { ...controlsContainerStyle, ...leftControlsContainerStyle }
-            break
-
-          case 'right':
-            controlsStyle = { ...controlsContainerStyle, ...rightControlsContainerStyle }
-            break
-
-          default:
-            controlsStyle = { ...controlsContainerStyle }
-        }
-
-        const supportedActions = spotifyManager.supportedActions()
-
+      if (!isRunning) {
         return (
-          <div style={controlsStyle}>
+          <div style={styles.widgetStyle}>
             <Icon
-              iconName='previous'
-              onClick={this.skipToPrevious}
-              style={{ ...iconStyle, display: !supportedActions.includes('previousTrack') ? 'none' : 'inherit' }}
-            />
-
-            <Icon
-              iconName={isPlaying ? 'pause' : 'play'}
-              onClick={this.togglePlayState}
-              style={{ ...iconStyle, ...playIconStyle, display: !supportedActions.includes('togglePlayPause') ? 'none' : 'inherit' }}
-            />
-
-            <Icon
-              iconName='next'
-              onClick={this.skipToNext}
-              style={{ ...iconStyle, display: !supportedActions.includes('nextTrack') ? 'none' : 'inherit' }}
+              iconName='spotify'
+              onClick={this._launchSpotify}
+              style={styles.iconStyle}
             />
           </div>
         )
       }
 
       return (
-        <Icon
-          iconName='spotify'
-          onClick={this._launchSpotify}
-          style={iconStyle}
-        />
-      )
-    }
-
-    render () {
-      const {
-        track
-      } = this.state
-
-      const {
-        widgetStyle
-      } = styles
-
-      return (
-        <div style={widgetStyle}>
-          {this.renderControls()}
-
-          <TrackInfo
-            track={track}
+        <div style={getWidgetStyle(controlsPosition)}>
+          <PlayerControls
+            isPlaying={isPlaying}
+            onNext={this.skipToNext}
+            onPrevious={this.skipToPrevious}
+            onTogglePlayState={this.togglePlayState}
+            supportedActions={this.supportedSpotifyActions}
           />
+
+          <TrackInfo track={track} />
+
+          {this.renderSpacer(controlsPosition)}
         </div>
       )
     }
@@ -263,29 +227,28 @@ const HyperSpotifyWidgetFactory = (React) => {
 
 const styles = {
   widgetStyle: {
+    width: '100%',
     height: 30,
     fontSize: 12,
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  leftControlsWidgetStyle: {
+    justifyContent: 'space-between'
+  },
+  rightControlsWidgetStyle: {
+    flexDirection: 'row-reverse',
+    justifyContent: 'space-between'
   },
   controlsContainerStyle: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    marginRight: 6
-  },
-  leftControlsContainerStyle: {
-    position: 'absolute',
-    left: 14,
-    marginRight: 0
-  },
-  rightControlsContainerStyle: {
-    position: 'absolute',
-    right: 14,
-    marginRight: 0
+    paddingLeft: 10,
+    paddingRight: 10
   },
   iconStyle: {
     height: 16,
@@ -294,6 +257,9 @@ const styles = {
   playIconStyle: {
     marginLeft: 6,
     marginRight: 6
+  },
+  spacer: {
+    width: 86
   }
 }
 
