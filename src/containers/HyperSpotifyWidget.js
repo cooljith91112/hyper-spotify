@@ -2,6 +2,7 @@ import { isEqual } from 'lodash'
 import SpotifyManager from '../lib/SpotifyManager'
 import IconFactory from '../components/Icon'
 import TrackInfoFactory from '../components/TrackInfo'
+import { RPCEvents } from '../constants'
 
 const HyperSpotifyWidgetFactory = (React) => {
   const { Component } = React
@@ -37,6 +38,38 @@ const HyperSpotifyWidgetFactory = (React) => {
       }
 
       this.spotifyManager = new SpotifyManager()
+    }
+
+    componentDidMount () {
+      // console.log('HyperSpotifyWidget didMount')
+
+      if (!this.soundCheck) {
+        this.soundCheck = setInterval(() => this.performSoundCheck(), 5000)
+      }
+
+      this.performSoundCheck()
+
+      // Attach shortcut handlers
+      window.rpc.on(RPCEvents.togglePlayPause, this.togglePlayState);
+      window.rpc.on(RPCEvents.prevSong, this.skipToPrevious);
+      window.rpc.on(RPCEvents.nextSong, this.skipToNext);
+    }
+
+    componentWillUnmount () {
+      // console.log('HyperSpotifyWidget willUnmount')
+
+      if (this.soundCheck) {
+        clearInterval(this.soundCheck)
+      }
+
+      // Remove shortcut handlers
+      window.rpc.removeListener(RPCEvents.togglePlayPause, this.togglePlayState);
+      window.rpc.removeListener(RPCEvents.prevSong, this.skipToPrevious);
+      window.rpc.removeListener(RPCEvents.nextSong, this.skipToNext);
+    }
+
+    shouldComponentUpdate (nextProps, nextState) {
+      return !isEqual(nextState, this.state)
     }
 
     performSoundCheck () {
@@ -81,7 +114,7 @@ const HyperSpotifyWidgetFactory = (React) => {
         })
     }
 
-    togglePlayState () {
+    togglePlayState = () => {
       const { spotifyManager, state: { isRunning } } = this
 
       if (isRunning) {
@@ -108,7 +141,7 @@ const HyperSpotifyWidgetFactory = (React) => {
       }
     }
 
-    skipTo (skipAction) {
+    skipTo = (skipAction) => {
       const { isRunning } = this.state
 
       if (isRunning) {
@@ -123,32 +156,11 @@ const HyperSpotifyWidgetFactory = (React) => {
       }
     }
 
-    _launchSpotify () {
-      // console.log('Start Spotify')
-      this.spotifyManager.launchSpotify()
-    }
+    skipToNext = () => this.skipTo(skipActions.next)
+    
+    skipToPrevious = () => this.skipTo(skipActions.previous)
 
-    componentDidMount () {
-      // console.log('HyperSpotifyWidget didMount')
-
-      if (!this.soundCheck) {
-        this.soundCheck = setInterval(() => this.performSoundCheck(), 5000)
-      }
-
-      this.performSoundCheck()
-    }
-
-    componentWillUnmount () {
-      // console.log('HyperSpotifyWidget willUnmount')
-
-      if (this.soundCheck) {
-        clearInterval(this.soundCheck)
-      }
-    }
-
-    shouldComponentUpdate (nextProps, nextState) {
-      return !isEqual(nextState, this.state)
-    }
+    _launchSpotify = () => this.spotifyManager.launchSpotify()
 
     renderControls () {
       const {
@@ -199,19 +211,19 @@ const HyperSpotifyWidgetFactory = (React) => {
           <div style={controlsStyle}>
             <Icon
               iconName='previous'
-              onClick={() => this.skipTo(previous)}
+              onClick={this.skipToPrevious}
               style={{ ...iconStyle, display: !supportedActions.includes('previousTrack') ? 'none' : 'inherit' }}
             />
 
             <Icon
               iconName={isPlaying ? 'pause' : 'play'}
-              onClick={() => this.togglePlayState()}
+              onClick={this.togglePlayState}
               style={{ ...iconStyle, ...playIconStyle, display: !supportedActions.includes('togglePlayPause') ? 'none' : 'inherit' }}
             />
 
             <Icon
               iconName='next'
-              onClick={() => this.skipTo(next)}
+              onClick={this.skipToNext}
               style={{ ...iconStyle, display: !supportedActions.includes('nextTrack') ? 'none' : 'inherit' }}
             />
           </div>
@@ -221,7 +233,7 @@ const HyperSpotifyWidgetFactory = (React) => {
       return (
         <Icon
           iconName='spotify'
-          onClick={() => this._launchSpotify()}
+          onClick={this._launchSpotify}
           style={iconStyle}
         />
       )

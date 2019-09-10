@@ -2,6 +2,7 @@ const _ = require('lodash')
 const { getThemeCssByName } = require('./dist/utils/ThemeManager')
 const { HyperSpotifyHeaderFactory } = require('./dist/components/HyperSpotifyHeader')
 const { HyperSpotifyFooterFactory } = require('./dist/components/HyperSpotifyFooter')
+const { defaultKeymaps, RPCEvents } = require('./dist/constants')
 
 exports.decorateConfig = (config) => {
   const hyperSpotify = Object.assign({
@@ -61,6 +62,57 @@ exports.mapHyperState = ({ ui: { hyperSpotify } }, map) => Object.assign({}, map
   hyperSpotify: Object.assign({}, hyperSpotify),
   customCSS: `${map.customCSS || ''} ${getThemeCssByName(_.get(hyperSpotify, 'theme', 'default'), hyperSpotify)}`
 })
+
+exports.decorateKeymaps = keymaps => Object.assign({}, defaultKeymaps, keymaps)
+
+exports.decorateMenu = (menu) => {
+  const keymaps = Object.assign({}, defaultKeymaps)
+
+  for (const menuItem of menu) {
+    if (menuItem.label === 'Plugins') {
+      menuItem.submenu = [].concat(
+        {
+          label: 'Spotify',
+          submenu: [
+            {
+              label: 'Play/Pause',
+              accelerator: keymaps[RPCEvents.togglePlayPause],
+              click(item, focusedWindow) {
+                if (focusedWindow) {
+                  focusedWindow.rpc.emit(RPCEvents.togglePlayPause, { focusedWindow });
+                }
+              },
+            },
+            {
+              label: 'Previous Song',
+              accelerator: keymaps[RPCEvents.prevSong],
+              click(item, focusedWindow) {
+                if (focusedWindow) {
+                  focusedWindow.rpc.emit(RPCEvents.prevSong, { focusedWindow });
+                }
+              },
+            },
+            {
+              label: 'Next Song',
+              accelerator: keymaps[RPCEvents.nextSong],
+              click(item, focusedWindow) {
+                if (focusedWindow) {
+                  focusedWindow.rpc.emit(RPCEvents.nextSong, { focusedWindow });
+                }
+              },
+            },
+          ],
+        },
+        {
+          type: 'separator'
+        }, 
+        menuItem.submenu,
+      );
+      break;
+    }
+  }
+  return menu;
+};
 
 exports.decorateHyper = (Hyper, { React }) => {
   const HyperSpotifyHeader = HyperSpotifyHeaderFactory(React) // eslint-disable-line no-unused-vars
