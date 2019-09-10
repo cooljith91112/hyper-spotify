@@ -97,6 +97,14 @@ modules.exports = {
 
 <br />
 
+## Hotkeys
+The following hotkeys to control Spotify are enabled when Hyper terminal is focused:
+- Play/Pause: `CmdOrCtrl+Shift+Space`
+- Next song: `CmdOrCtrl+Shift+N`
+- Previous song: `CmdOrCtrl+Shift+P`
+
+<br />
+
 ## Limitations
 Currently works only on `macOS`, `Linux` (Tested on Ubuntu 17.04).
 
