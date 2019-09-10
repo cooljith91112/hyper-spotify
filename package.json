@@ -34,18 +34,18 @@
     "prepublishOnly": "yarn build"
   },
   "dependencies": {
-    "@babel/runtime-corejs2": "^7.5.4",
+    "@babel/runtime-corejs2": "^7.6.0",
     "dbus-native": "^0.4.0",
     "lodash": "^4.17.14",
     "open": "^6.4.0",
     "spotify-node-applescript": "^1.1.1"
   },
   "devDependencies": {
-    "@babel/cli": "^7.5.0",
-    "@babel/core": "^7.5.4",
-    "@babel/plugin-proposal-class-properties": "^7.5.0",
-    "@babel/plugin-transform-runtime": "^7.5.0",
-    "@babel/preset-env": "^7.5.4",
+    "@babel/cli": "^7.6.0",
+    "@babel/core": "^7.6.0",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/plugin-transform-runtime": "^7.6.0",
+    "@babel/preset-env": "^7.6.0",
     "@babel/preset-react": "^7.0.0",
     "babel-eslint": "^10.0.3",
     "eslint": "4.19.1",
