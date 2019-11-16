@@ -20,7 +20,7 @@ class SpotifyManager {
   }
 
   launchSpotify() {
-    return opn('spotify://');
+    return opn('spotify://', {url: true});
   }
 
   supportedActions() {
