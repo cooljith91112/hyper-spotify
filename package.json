@@ -34,25 +34,25 @@
     "prepublishOnly": "yarn build"
   },
   "dependencies": {
-    "@babel/runtime-corejs2": "^7.6.0",
+    "@babel/runtime-corejs2": "^7.7.2",
     "dbus-native": "^0.4.0",
     "lodash": "^4.17.15",
-    "open": "^6.4.0",
+    "open": "^7.0.0",
     "spotify-node-applescript": "^1.1.1"
   },
   "devDependencies": {
-    "@babel/cli": "^7.6.0",
-    "@babel/core": "^7.6.0",
-    "@babel/plugin-proposal-class-properties": "^7.5.5",
-    "@babel/plugin-transform-runtime": "^7.6.0",
-    "@babel/preset-env": "^7.6.0",
-    "@babel/preset-react": "^7.0.0",
+    "@babel/cli": "^7.7.0",
+    "@babel/core": "^7.7.2",
+    "@babel/plugin-proposal-class-properties": "^7.7.0",
+    "@babel/plugin-transform-runtime": "^7.6.2",
+    "@babel/preset-env": "^7.7.1",
+    "@babel/preset-react": "^7.7.0",
     "babel-eslint": "^10.0.3",
-    "eslint": "4.19.1",
-    "eslint-config-prettier": "2.10.0",
-    "eslint-plugin-prettier": "2.7.0",
-    "eslint-plugin-react": "7.3.0",
-    "prettier": "1.18.2",
+    "eslint": "6.6.0",
+    "eslint-config-prettier": "6.5.0",
+    "eslint-plugin-prettier": "3.1.1",
+    "eslint-plugin-react": "7.16.0",
+    "prettier": "1.19.1",
     "rimraf": "^3.0.0"
   }
 }

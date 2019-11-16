@@ -28,5 +28,10 @@
     "react/jsx-no-target-blank": 0,
     "react/no-string-refs": 0,
     "prettier/prettier": "error"
+  },
+  "settings": {
+    "react": {
+      "version": "16.11.0"
+    }
   }
 }
