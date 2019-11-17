@@ -35,10 +35,8 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.7.2",
-    "dbus-native": "^0.4.0",
-    "lodash": "^4.17.15",
-    "open": "^7.0.0",
-    "spotify-node-applescript": "^1.1.1"
+    "@panz3r/spotify-js": "^1.0.0-alpha.5",
+    "lodash": "^4.17.15"
   },
   "devDependencies": {
     "@babel/cli": "^7.7.0",

@@ -1,5 +1,6 @@
+import {SpotifyManager} from '@panz3r/spotify-js';
 import {isEqual} from 'lodash';
-import SpotifyManager from '../lib/SpotifyManager';
+
 import IconFactory from '../components/Icon';
 import PlayerControlsFactory from '../components/PlayerControls';
 import TrackInfoFactory from '../components/TrackInfo';
