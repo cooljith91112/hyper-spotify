@@ -127,24 +127,21 @@ If you get an error related to `abstract-socket` not being compiled with the cor
 
 For more details see [issue #13](https://github.com/panz3r/hyper-spotify/issues/13#issuecomment-453855958).
 
+### Issue with `hyper-statusline`
+
+If you have issue using this plugin alongside `hyper-statusline` make sure this plugin is declared before `hyper-statusline`.
+
 <br />
+
+## Credits
+
+This plugin is inspired by [`atom-spotify2`](https://github.com/albertorestifo/atom-spotify2) and relies on 
+[`spotify-js`](https://github.com/panz3r/spotify-js) to interact with [Spotify](https://www.spotify.com) client
 
 ## Related Projects
 
 If you found this plugin of your interest or if you need to control other media players be sure to check out
 [`hyper-media-control`](https://github.com/OrionNebula/hyper-media-control) by [@OrionNebula](https://github.com/OrionNebula)
-
-## Credits
-
-This plugin is inspired by [`atom-spotify2`](https://github.com/albertorestifo/atom-spotify2) and relies on 
-- [`spotify-node-applescript`](https://github.com/andrehaveman/spotify-node-applescript) on macOS
-- [`node-dbus`](https://github.com/sidorares/node-dbus) on Linux
-
-to interact with [Spotify](https://www.spotify.com) client
-
-## Special Thanks
-
-- [@OrionNebula](https://github.com/OrionNebula) for `Windows` support initial implementation.
 
 ---
 
