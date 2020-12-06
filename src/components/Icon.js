@@ -1,6 +1,6 @@
 import {capitalize} from 'lodash';
 
-const IconFactory = React =>
+const IconFactory = (React) =>
   function Icon({iconName, onClick, style}) {
     const className = `hyper-spotify-icon hyper-spotify-icon-${iconName} hoverable`;
     const iconStyle = iconName ? styles[capitalize(iconName) + 'IconStyle'] : styles.SpotifyIconStyle;

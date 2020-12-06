@@ -1,7 +1,7 @@
 import HyperSpotifyOverlayFactory from './HyperOverlay';
 import HyperSpotifyWidgetFactory from '../containers/HyperSpotifyWidget';
 
-export const HyperSpotifyFooterFactory = React => {
+export const HyperSpotifyFooterFactory = (React) => {
   const HyperSpotifyOverlay = HyperSpotifyOverlayFactory(React);
   const HyperSpotifyWidget = HyperSpotifyWidgetFactory(React);
 
