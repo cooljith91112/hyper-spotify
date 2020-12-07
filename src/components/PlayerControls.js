@@ -1,6 +1,6 @@
 import IconFactory from './Icon';
 
-const PlayerControlsFactory = React => {
+const PlayerControlsFactory = (React) => {
   const Icon = IconFactory(React);
 
   const PlayerControls = ({isPlaying, onNext, onPrevious, onTogglePlayState, supportedActions}) => (

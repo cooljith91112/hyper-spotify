@@ -4,7 +4,7 @@ const {HyperSpotifyHeaderFactory} = require('./dist/components/HyperSpotifyHeade
 const {HyperSpotifyFooterFactory} = require('./dist/components/HyperSpotifyFooter');
 const {defaultKeymaps, RPCEvents} = require('./dist/constants');
 
-exports.decorateConfig = config => {
+exports.decorateConfig = (config) => {
   const hyperSpotify = Object.assign(
     {
       position: 'bottom',
@@ -67,9 +67,9 @@ exports.mapHyperState = ({ui: {hyperSpotify}}, map) =>
     customCSS: `${map.customCSS || ''} ${getThemeCssByName(_.get(hyperSpotify, 'theme', 'default'), hyperSpotify)}`
   });
 
-exports.decorateKeymaps = keymaps => Object.assign({}, defaultKeymaps, keymaps);
+exports.decorateKeymaps = (keymaps) => Object.assign({}, defaultKeymaps, keymaps);
 
-exports.decorateMenu = menu => {
+exports.decorateMenu = (menu) => {
   const keymaps = Object.assign({}, defaultKeymaps);
 
   for (const menuItem of menu) {

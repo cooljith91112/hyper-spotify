@@ -6,7 +6,7 @@ import PlayerControlsFactory from '../components/PlayerControls';
 import TrackInfoFactory from '../components/TrackInfo';
 import {RPCEvents} from '../constants';
 
-const getWidgetStyle = controlsPosition => {
+const getWidgetStyle = (controlsPosition) => {
   switch (controlsPosition) {
     case 'left':
       return {
@@ -27,7 +27,7 @@ const getWidgetStyle = controlsPosition => {
   }
 };
 
-const HyperSpotifyWidgetFactory = React => {
+const HyperSpotifyWidgetFactory = (React) => {
   const Icon = IconFactory(React); // eslint-disable-line no-unused-vars
   const PlayerControls = PlayerControlsFactory(React); // eslint-disable-line no-unused-vars
   const TrackInfo = TrackInfoFactory(React); // eslint-disable-line no-unused-vars
@@ -105,7 +105,7 @@ const HyperSpotifyWidgetFactory = React => {
 
       this.spotifyManager
         .isRunning()
-        .then(isRunning => {
+        .then((isRunning) => {
           this.setState({isRunning});
 
           if (isRunning) {
@@ -117,7 +117,7 @@ const HyperSpotifyWidgetFactory = React => {
                 // Get Track details
                 return this.spotifyManager.getTrack();
               })
-              .then(track => {
+              .then((track) => {
                 // console.log('currentTrack', track)
                 this.setState({track});
               })
@@ -139,7 +139,7 @@ const HyperSpotifyWidgetFactory = React => {
       if (isRunning) {
         this.spotifyManager
           .togglePlayPause()
-          .then(spotifyState => {
+          .then((spotifyState) => {
             this.setState({isPlaying: spotifyState.state === 'playing'});
           })
           .catch(() => {
@@ -160,12 +160,12 @@ const HyperSpotifyWidgetFactory = React => {
       }
     }
 
-    skipTo = skipAction => {
+    skipTo = (skipAction) => {
       const {isRunning} = this.state;
 
       if (isRunning) {
         this._getSkipPromise(skipAction)
-          .then(track => {
+          .then((track) => {
             // console.log('newTrack', track)
             this.setState({track});
           })

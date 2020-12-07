@@ -1,4 +1,4 @@
-const HyperSpotifyOverlayFactory = React =>
+const HyperSpotifyOverlayFactory = (React) =>
   function HyperOverlay() {
     return <span className="hyper-spotify-overlay" style={styles.overlayStyle} />;
   };

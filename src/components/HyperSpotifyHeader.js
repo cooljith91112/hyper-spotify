@@ -1,7 +1,7 @@
 import HyperSpotifyOverlayFactory from './HyperOverlay';
 import HyperSpotifyWidgetFactory from '../containers/HyperSpotifyWidget';
 
-export const HyperSpotifyHeaderFactory = React => {
+export const HyperSpotifyHeaderFactory = (React) => {
   const HyperSpotifyOverlay = HyperSpotifyOverlayFactory(React); // eslint-disable-line no-unused-vars
   const HyperSpotifyWidget = HyperSpotifyWidgetFactory(React); // eslint-disable-line no-unused-vars
 

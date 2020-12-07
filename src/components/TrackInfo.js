@@ -1,4 +1,4 @@
-const TrackInfoFactory = React =>
+const TrackInfoFactory = (React) =>
   function TrackInfo({track}) {
     return (
       <div className="hyper-spotify-track" style={styles.trackInfoContainer}>
